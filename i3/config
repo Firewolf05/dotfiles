@@ -29,6 +29,7 @@ workspace 2 output $firstMonitor
 workspace 3 output $secondMonitor
 workspace 4 output $secondMonitor
 workspace 5 output $secondMonitor
+workspace 9 output $secondMonitor
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -142,10 +143,10 @@ bindsym $mod+shift+d focus mode_toggle
 ################# resize  
 
 # Resizing by 1
-bindsym $mod+Mod1+Ctrl+Right resize shrink width 1 px or 1 ppt
-bindsym $mod+Mod1+Ctrl+Up resize grow height 1 px or 1 ppt
-bindsym $mod+Mod1+Ctrl+Down resize shrink height 1 px or 1 ppt
-bindsym $mod+Mod1+Ctrl+Left resize grow width 1 px or 1 ppt
+bindsym $mod+Mod1+Ctrl+Right resize shrink width 3 px or 3 ppt
+bindsym $mod+Mod1+Ctrl+Up resize grow height 3 px or 3 ppt
+bindsym $mod+Mod1+Ctrl+Down resize shrink height 3 px or 3 ppt
+bindsym $mod+Mod1+Ctrl+Left resize grow width 3 px or 3 ppt
 
 # old resize keybindings
 # resize window (you can also use the mouse for that)
@@ -184,6 +185,7 @@ exec_always --no-startup-id numlockx on
 # floating enabled from some programs - find with xprop
 
 for_window [class="Variety"] floating enable
+for_window [class="Osmo"] floating enable
 for_window [class="Galculator"] floating enable
 for_window [class="^Gpick$"] floating enable
 for_window [class="Lxappearance"] floating enable
@@ -196,8 +198,6 @@ for_window [title="Deleting"] floating enable
 for_window [title="Moving"] floating enable
 
 for_window [window_role="pop-up"] floating enable
-for_window [window_role="^Preferences$"] floating enable
-for_window [window_role="setup"] floating enable
 
 ################# audio settings                   
 
@@ -233,17 +233,16 @@ gaps outer 2
 #smart_gaps on
 #smart_borders on
               
-##appearance                   
 
-    # Window color settings
-    # class                 border  backgr. text    indicator
-    client.focused          #bd93f9 #bd93f9 #2D2D2D #bd93f9
-    client.unfocused        #2D2D2D #2d2d2d #dcdcdc #292d2e
-    client.focused_inactive #2d2d2d #2d2d2d #dcdcdc #484e50
-    client.placeholder      #2d2d2d #2d2d2d #dcdcdc #484e502
-    client.urgent           #2D2D2D #2D2D2D #dcdcdc #900000
+# class                 border  bground text    indicator child_border
+client.focused          #bd93f9 #bd93f9 #2D2D2D #bd93f9   #bd93f9
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
-    client.background       #242424
+client.background       #F8F8F2
+
 
 ##
 ###############################################
@@ -320,7 +319,11 @@ bindsym --release $mod+Escape exec xkill
         #for_window [class="spotify"] focus
 
         #steam
+        bindsym $mod+F6 exec --no-startup-id "Steam"
         assign [class="Steam"] 6
 
         #zoom
-        assign [class="Zoom\ Meeting"] 10
+        assign [class="Zoom Meeting"] 10
+
+        #librewolf
+        assign [class="librewolf"] 9
