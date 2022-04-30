@@ -2,7 +2,6 @@
 
 [global]
     ### Display ###
-
     # Which monitor should the notifications be displayed on.
     monitor = 0
 
@@ -26,7 +25,7 @@
     # constant width of 300
     # width = 300
 
-    The maximum height of a single notification, excluding the frame.
+    #The maximum height of a single notification, excluding the frame.
     height = 300
 
     # Position the notification in the top right corner
@@ -274,8 +273,8 @@
     # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
+    mouse_middle_click = close_current
+    mouse_left_click = do_action, close_current
     mouse_right_click = close_all
 
 # Experimental features that may or may not work correctly. Do not expect them
@@ -301,7 +300,7 @@
 [urgency_normal]
     background = "#44475a"
     foreground = "#ffffff"
-    timeout = 10
+    timeout = 10 
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 

@@ -34,6 +34,14 @@ super + shift + space
 super + {d,f}
     bspc node -t {tiled,fullscreen} 
 
+# vertical #
+super + v 
+    bspc node @parent -R 90
+
+# preselect the direction #
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
 # restart bspwm #
 super + shift + r
     bspc wm -r && pkill -USR1 -x sxhkd
@@ -58,7 +66,7 @@ super + shift + f
 
 # rofi #
 super + space
-    rofi -modi window,drun,run -show drun -show-icons -icon-theme Papirus
+    sh ~/.config/rofi/launchers/misc/launcher.sh
 
 # kitty #
 super + Return
@@ -81,10 +89,20 @@ XF86Audio{Raise,Lower}Volume
     amixer -q set Master 5%{+,-}
 
 XF86AudioMute
-    amixer set Master toggle
+    amixer -D pulse set Master toggle
 
+# playerctl control # 
 XF86AudioPlay
     playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+XF86AudioStop
+    playerctl stop
 
 # lock screen #
 super + x

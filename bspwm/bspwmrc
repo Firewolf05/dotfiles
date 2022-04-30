@@ -40,7 +40,7 @@ config pointer_modifier Mod4
 bspc config focus_follows_pointer true
 bspc config border_width 2
 config window_gap 6
-config split_ratio 0.50
+config split_ratio 0.45
 
 # ##############################################################################
 # #                                 MISCELLANEOUS                              #
@@ -60,7 +60,7 @@ xset m 0 0
 pgrep -x variety >/dev/null && echo "e" >/dev/null || variety &
 
 #polybar
-bash ~/.config/polybar/launch.sh &
+#bash ~/.config/polybar/launch.sh &
 bash ~/.config/polybar/scripts/multi-screens.sh &
 
 #picom
@@ -74,12 +74,15 @@ setxkbmap -layout us,gr &
 setxkbmap -option 'grp:alt_shift_toggle' &
 
 #clipman
-pgrep -x xfce4-clipman >/dev/null && echo "e" >/dev/null || xfce4-clipman &
+pgrep -x xfce4-clipman >/dev/null && echo e || xfce4-clipman &
 
 #dunst
+pgrep -x dunst >/dev/null && pkill dunst || dunst --config $HOME/.config/dunst/dunstrc &
 dunst --config $HOME/.config/dunst/dunstrc &
 
 #polkit 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
+#numlock
+numlockx on
 
