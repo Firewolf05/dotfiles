@@ -66,7 +66,7 @@ super + shift + f
 
 # rofi #
 super + space
-    sh ~/.config/rofi/launchers/misc/launcher.sh
+    rofi -no-lazy-grab -show drun -modi drun -theme $HOME/.config/rofi/launcher.rasi
 
 # kitty #
 super + Return
@@ -79,6 +79,11 @@ super + F4
 # discord #
 super + F3
     discord-canary
+
+# spotify # 
+super + F5
+    spotify 
+
 
 ####################
 ####    OTHER    ###
