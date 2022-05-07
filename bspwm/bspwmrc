@@ -31,6 +31,8 @@ rule discord desktop=3
 rule Variety state=floating
 rule Pavucontrol state=floating
 rule Lxappearance state=floating
+rule Gpick state=floating
+rule Nm-connection-editor state=floating
 
 # ##############################################################################
 # #                            GENERAL CONFIGURATION                           #
@@ -57,6 +59,7 @@ xset m 0 0
 # ##############################################################################
 
 #variety
+bash ~/.fehbg
 pgrep -x variety >/dev/null && echo "e" >/dev/null || variety &
 
 #polybar
@@ -74,7 +77,7 @@ setxkbmap -layout us,gr &
 setxkbmap -option 'grp:alt_shift_toggle' &
 
 #clipman
-pgrep -x xfce4-clipman >/dev/null && echo e || xfce4-clipman &
+pgrep -x xfce4-clipman >/dev/null && echo e >/dev/null || xfce4-clipman &
 
 #dunst
 pgrep -x dunst >/dev/null && pkill dunst || dunst --config $HOME/.config/dunst/dunstrc &
@@ -86,3 +89,5 @@ dunst --config $HOME/.config/dunst/dunstrc &
 #numlock
 numlockx on
 
+# Network Applet 
+nm-applet

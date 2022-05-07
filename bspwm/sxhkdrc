@@ -61,8 +61,8 @@ super + p
 # flamehsot #
 alt + s 
     flameshot gui 
-super + shift + f 
-    flameshot screen
+super + shift + f
+    flameshot launcher
 
 # rofi #
 super + space
@@ -83,6 +83,13 @@ super + F3
 ####################
 ####    OTHER    ###
 ####################
+
+# eww # 
+super + a 
+    eww -c ~/.config/eww/dashboard open-many background profile system clock uptime music github reddit twitter youtube weather apps mail logout sleep reboot poweroff folders
+
+super + shift + a 
+    pkill eww    
 
 # volume #
 XF86Audio{Raise,Lower}Volume
