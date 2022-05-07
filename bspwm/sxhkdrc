@@ -31,8 +31,8 @@ super + shift + space
     bspc node -t floating
 
 # fullscreen #
-super + {d,f}
-    bspc node -t {tiled,fullscreen} 
+super + f
+    sh ~/.config/bspwm/scripts/fullscreen.sh
 
 # vertical #
 super + v 
