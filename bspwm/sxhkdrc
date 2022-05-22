@@ -58,7 +58,7 @@ super + c
 super + p
   bash ~/.local/bin/xcolor-pick
 
-# flamehsot #
+# flameshot #
 alt + s 
     flameshot gui 
 super + shift + f
