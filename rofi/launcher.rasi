@@ -30,7 +30,7 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
 	border:							3px;
-	border-color:					#8be9fd;
+	border-color:					#ffb86c;
     border-radius:                  12px;
 	width:							40%;
     location:                       center;

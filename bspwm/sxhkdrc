@@ -38,13 +38,17 @@ super + f
 super + v 
     bspc node @parent -R 90
 
-# preselect the direction #
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
 # restart bspwm #
 super + shift + r
     bspc wm -r && pkill -USR1 -x sxhkd
+
+# gaps toggle #
+super + {b,n}
+    sh ~/.config/bspwm/scripts/gaps{1,2}.sh
+
+# afk # 
+super + Escape
+    sh ~/.config/bspwm/scripts/afk.sh
 
 ####################
 ####    APPS    ####
@@ -65,10 +69,15 @@ super + shift + f
     flameshot launcher
 
 # rofi #
+#launcher
 super + space
-    rofi -no-lazy-grab -show drun -modi drun -theme $HOME/.config/rofi/launcher.rasi
+    rofi -no-lazy-grab -show drun -modi drun,window -theme $HOME/.config/rofi/launcher.rasi
 
-# kitty #
+# xkill #
+#super + Escape 
+#    timeout 10 xkill 
+
+# terminal #
 super + Return
     kitty
 
@@ -82,7 +91,7 @@ super + F3
 
 # spotify # 
 super + F5
-    spotify 
+    bspc desktop -f 5 && spotify 
 
 
 ####################
@@ -116,6 +125,13 @@ XF86AudioPrev
 XF86AudioStop
     playerctl stop
 
-# lock screen #
+# power-menu #
+#1
 super + x
-    arcolinux-logout
+    sh $HOME/.config/rofi/scripts/powermenu.sh
+#2
+super + e
+    archlinux-logout
+#lock
+super + l 
+    betterlockscreen -l 

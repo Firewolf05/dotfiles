@@ -34,13 +34,21 @@ rule Lxappearance state=floating
 rule Gpick state=floating
 rule Nm-connection-editor state=floating
 
+rule PolyMC desktop=6
+rule lunarclient desktop=6 state=tiled 
+rule Steam desktop=6
+rule steam_app_1145360 desktop=6
+rule steam_app_444090 desktop=6 
+rule steam_proton desktop=6
+rule heroic desktop=6
+
 # ##############################################################################
 # #                            GENERAL CONFIGURATION                           #
 # ##############################################################################
 
 config pointer_modifier Mod4
-bspc config focus_follows_pointer true
-bspc config border_width 2
+config focus_follows_pointer true
+config border_width 2
 config window_gap 6
 config split_ratio 0.45
 
@@ -48,10 +56,10 @@ config split_ratio 0.45
 # #                                 MISCELLANEOUS                              #
 # ##############################################################################
 
-bspc config normal_border_color 	"#44475a"
-bspc config active_border_color 	"#44475a"
-bspc config focused_border_color 	"#bd93f9"
-bspc config presel_feedback_color "#b24744"
+config normal_border_color 	"#44475a"
+config active_border_color 	"#44475a"
+config focused_border_color 	"#bd93f9"
+config presel_feedback_color "#b24744"
 xset m 0 0
 
 # ##############################################################################
@@ -60,34 +68,34 @@ xset m 0 0
 
 #variety
 bash ~/.fehbg
-pgrep -x variety >/dev/null && echo "e" >/dev/null || variety &
+start variety
 
 #polybar
-#bash ~/.config/polybar/launch.sh &
-bash ~/.config/polybar/scripts/multi-screens.sh &
+#sh ~/.config/polybar/launch.sh &
+start multi-screens 
 
 #picom
-picom --config ~/.config/picom/config.conf --experimental-backends &
+start picomd 
 
 #appearance stuff
-timeout 1 lxappearance &
+#timeout 1 lxappearance &
 
 #keyboard layout 
-setxkbmap -layout us,gr &
-setxkbmap -option 'grp:alt_shift_toggle' &
-
+start keyboard-cfg 
+ 
 #clipman
-pgrep -x xfce4-clipman >/dev/null && echo e >/dev/null || xfce4-clipman &
+start xfce4-clipman 
 
 #dunst
-pgrep -x dunst >/dev/null && pkill dunst || dunst --config $HOME/.config/dunst/dunstrc &
-dunst --config $HOME/.config/dunst/dunstrc &
+start dunst
+notify-send Bspwm Restarted -t 5000 --icon=/home/george/.config/bspwm/cat.png
 
 #polkit 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+start gnome-polkit 
 
 #numlock
-numlockx on
+start numlockx on
 
-# Network Applet 
-nm-applet
+#Network Applet 
+start nm-applet
+

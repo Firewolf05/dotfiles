@@ -16,7 +16,7 @@ configuration {
 
 
 * {
-  accent:           #A9C03F;
+  accent:           #ffb86c;
   background:       #141c21;
   background-light: #00000000;
   foreground:       #93a1a1;
@@ -34,7 +34,7 @@ window {
     background-color:               #f2f2f215;
     text-color:                     @foreground;
 	border:							3px;
-	border-color:					#A9C03F;
+	border-color:					#ffb86c;
     border-radius:                  12px;
 	width:							40%;
     location:                       center;
@@ -127,7 +127,7 @@ element selected {
     text-color:                     @background;
     border:                  		0px;
     border-radius:                  20px;
-    border-color:                  	#A9C03F;
+    border-color:                  	#ffb86c;
 }
 
 element selected.urgent {

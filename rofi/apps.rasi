@@ -13,7 +13,14 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-@import "colors.rasi"
+* {
+  accent:           #ffb86c;
+  background:       #383C4A;
+  background-light: #44475a;
+  foreground:       #E4E4E4;
+  on:               #44ad4d;
+  off:              #e34039;
+}
 
 * {
     background-color:               @background;
@@ -30,7 +37,7 @@ window {
 }
 
 listview {
-    lines:							5;
+    lines:							7;
     margin:                         8px;
     spacing:                        8px;
     cycle:                          true;

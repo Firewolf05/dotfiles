@@ -6,7 +6,7 @@
 ## Twitter : @adi1090x
 
 dir="$HOME/.config/rofi"
-rofi_command="rofi -theme $dir/style.rasi"
+rofi_command="rofi -theme $dir/apps.rasi"
 
 # Links
 terminal=""
@@ -15,6 +15,7 @@ editor=""
 browser=""
 music=""
 settings=""
+launcher=""
 
 # Error msg
 msg() {
@@ -22,7 +23,7 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$terminal\n$files\n$editor\n$browser\n$music\n$settings"
+options="$terminal\n$files\n$editor\n$browser\n$music\n$settings\n$launcher"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Most Used" -dmenu -selected-row 0)"
 case $chosen in
@@ -90,5 +91,8 @@ case $chosen in
 			msg "No suitable settings manager found!"
 		fi
         ;;
+	$launcher)
+		rofi -no-lazy-grab -show drun -modi drun,window -theme $HOME/.config/rofi/launcher.rasi 
+		;;
 esac
 

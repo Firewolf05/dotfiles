@@ -14,9 +14,9 @@ configuration {
 }
 
 * {
-  accent:           #6BA0DE;
+  accent:           #ffb86c;
   background:       #383C4A;
-  background-light: #404552;
+  background-light: #44475a;
   foreground:       #E4E4E4;
   on:               #44ad4d;
   off:              #e34039;

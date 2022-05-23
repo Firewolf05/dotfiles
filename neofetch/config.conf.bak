@@ -3,21 +3,20 @@
 print_info() {
     info title
     info underline
-    prin "$(color 2)OS: Windows 12"
-    #info "OS" distro
+
+    info "OS" distro
     info "Host" model
-    #info "Kernel" kernel
+    info "Kernel" kernel
     info "Uptime" uptime
-    prin "$(color 2)Packages: 2 (scoop)"
-    #info "Shell" shell
-    prin "$(color 2)Shell: Powershell"
+    info "Packages" packages
+    info "Shell" shell
     info "Resolution" resolution
-    #info "DE" de
-    #info "WM" wm
-    #info "WM Theme" wm_theme
-    #info "Theme" theme
-    #info "Icons" icons
-    prin "$(color 2)Terminal: Windows Terminal"
+    info "DE" de
+    info "WM" wm
+    info "WM Theme" wm_theme
+    info "Theme" theme
+    info "Icons" icons
+    info "Terminal" term
     info "Terminal Font" term_font
     info "CPU" cpu
     info "GPU" gpu
@@ -703,7 +702,7 @@ disk_display="off"
 #           'viu'
 
 # Flag:     --backend
-image_backend="ascii"
+image_backend="kitty"
 #image_backend="ascii"
 # Image Source
 #
@@ -717,8 +716,8 @@ image_backend="ascii"
 # NOTE: 'auto' will pick the best image source for whatever image backend is used.
 #       In ascii mode, distro ascii art will be used and in an image mode, your
 #       wallpaper will be used.
-#image_source="/home/george/.config/neofetch/logo.png"
-image_source="/home/george/Downloads/Archlinux-icon-crystal-64.svg.png"
+image_source="/home/george/.config/neofetch/logo1.png"
+
 #image_source="auto"
 
 # Ascii Options
@@ -770,7 +769,7 @@ image_source="/home/george/Downloads/Archlinux-icon-crystal-64.svg.png"
 #       Slackware, SunOS, LinuxLite, OpenSUSE, Raspbian,
 #       postmarketOS, and Void have a smaller logo variant.
 #       Use '{distro name}_small' to use the small variants.
-ascii_distro="windows"
+ascii_distro="auto"
 
 # Ascii Colors
 #
@@ -802,13 +801,13 @@ ascii_bold="on"
 # Default:  'off'
 # Values:   'on', 'off'
 # Flag:     --loop
-image_loop="off"
+image_loop="on"
 
 # Thumbnail directory
 #
 # Default: '~/.cache/thumbnails/neofetch'
 # Values:  'dir'
-thumbnail_dir="${XDG_CACHE_HOME:-${HOME}/.cache}/thumbnails/neofetch"
+#thumbnail_dir="${XDG_CACHE_HOME:-${HOME}/.cache}/thumbnails/neofetch"
 
 # Crop mode
 #
