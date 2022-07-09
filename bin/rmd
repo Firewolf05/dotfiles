@@ -1,2 +1,0 @@
-#! /usr/bin/bash
-rm -r /home/george/.trash 

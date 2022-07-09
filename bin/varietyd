@@ -1,2 +1,0 @@
-#!/usr/bin/bash 
-pgrep -x variety >/dev/null && echo e >/dev/null || variety 
