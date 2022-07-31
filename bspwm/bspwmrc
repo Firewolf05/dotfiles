@@ -5,7 +5,7 @@
 # ##############################################################################
 
 export BROWSER=firefox
-export EDITOR=nano
+export EDITOR=nvim
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for JetBrains IDEs
 xdg-mime query default inode/directory org.xfce.thunar 
 
@@ -23,28 +23,28 @@ monitor() { bspc monitor "$@" & }
 # ##############################################################################
 
 monitor HDMI-A-0 -d 1 2 6 7 8 
-monitor HDMI-A-1 -d 3 4 5 9 10
+monitor HDMI-A-1 -d 3 4 5 9 10 
 
 rule firefox desktop=4
-rule discord desktop=3 focus=off
+rule discord desktop=3
 rule Variety state=floating
 rule Pavucontrol state=floating
 rule Lxappearance state=floating
 rule Gpick state=floating
 rule Nm-connection-editor state=floating
-rule Spotify desktop=5
 rule copyq state=floating
-rule "YouTube Music" desktop=5 state=floating 
 rule Library state=floating
 rule "Primenote" state=floating
+bspc rule -a floating state=floating
 
 rule "SkyClient (Forge 1.8.9)" desktop=6
+rule MultiMC desktop=6
 rule PolyMC desktop=6
 rule "Minecraft 1.12.2" desktop=6
 rule "Minecraft 1.8.9" desktop=6
 rule "Minecraft* 1.18.1" desktop=6
 rule "Minecraft* 1.18.2" desktop=6
-rule lunarclient desktop=6 state=tiled 
+rule lunarclient desktop=6
 rule Steam desktop=6
 rule steam_app_1145360 desktop=6
 rule steam_app_444090 desktop=6 
@@ -93,10 +93,11 @@ pgrep -x picom >/dev/null && echo e >/dev/null || $(cat ~/.picomlockfile) --conf
 #mouse settings 
 xsetroot -cursor_name left_ptr &
 xset m 0 0 
-xinput set-prop 13 300 -0.2  
+xinput set-prop 13 300 -0.4
 
 #keyboard layout 
-start keyboard-cfg 
+keyboard-cfg 
+bash $HOME/.config/bspwm/keyboard-colors
 
 #clipman
 start clipmenud

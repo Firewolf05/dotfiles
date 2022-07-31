@@ -4,6 +4,7 @@
 id="${1?}" \
 instance="$3" \
 class="$2";
+desktop="5"
 
 case "$class" in
     (foo)
@@ -21,6 +22,6 @@ case "$class" in
 IN
         case "$(ps -p "${_NET_WM_PID:?}" -o comm= 2>/dev/null)" in
             (spotify)
-                echo desktop=5;;
+                echo desktop=$desktop;;
         esac;;
 esac;

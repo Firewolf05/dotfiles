@@ -9,7 +9,7 @@
 
 configuration {
     show-icons:                     false;
-	font:                      		"Comfortaa 14";
+	font:                      		"FantasqueSansMono Nerd Font";
     disable-history:                false;
 	sidebar-mode: 					false;
 }

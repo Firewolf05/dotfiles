@@ -69,7 +69,7 @@ super + shift + f
     flameshot launcher
 
 ~Print
-     flameshot gui 
+    flameshot gui 
 
 # rofi #
 #launcher
@@ -84,12 +84,15 @@ super + c
 super + shift + c 
     rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -theme ~/.config/rofi/clipmenu.rasi
 
+~button2
+     bspc query -D -d 'focused.!occupied' && launcher
+
 # terminal #
 super + Return
     kitty
 
-~button2
-     bspc query -D -d 'focused.!occupied' && kitty 
+super + slash
+    kitty --class=floating --config=$HOME/.config/kitty/floating.conf
 
 # firefox #
 super + F4
@@ -112,6 +115,9 @@ super + F1
 	bash ~/.config/bspwm/scripts/jgmenu.sh 
 
 alt + button3
+    jgmenud
+
+~Alt_R
     jgmenud
 
 # thunderbird #
@@ -140,6 +146,9 @@ XF86AudioMute
 XF86AudioPlay
     playerctl play-pause
 
+control + KP_Divide
+    playerctl play-pause
+
 XF86AudioNext
     playerctl next
 
@@ -156,6 +165,9 @@ super + x
 
 #lock
 super + l 
-    betterlockscreen -l 
+    betterlockscreen -l
 
+########################
+####    COOL STUFF    ###
+#######################
 
