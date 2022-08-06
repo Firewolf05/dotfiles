@@ -1,9 +1,8 @@
 # dotfiles
 my configs, probably not a good idea to use as is 
 
-![discord-pipes-clock](https://user-images.githubusercontent.com/77410335/163725664-93e025b9-b1ea-4494-91f4-f037a7da6b7c.png)
+![desktop_1](https://user-images.githubusercontent.com/77410335/183262090-1271abf7-8640-422b-bce4-4eb42a4ac4dd.png)
 
-![neofetch-btop-cava](https://user-images.githubusercontent.com/77410335/163725680-a98a5068-13ad-4310-994b-f7b9b6c31989.png)
+![desktop_2](https://user-images.githubusercontent.com/77410335/183262095-bc91c9ec-0c0f-419f-9c5d-71d38eee3810.png)
 
-![vsc-tree-cat](https://user-images.githubusercontent.com/77410335/163725688-ade58ea0-b3d6-43cf-b14a-9af8b5eb8529.png)
-\+ cat
+![desktop_3](https://user-images.githubusercontent.com/77410335/183262100-bbb48726-0d53-44e4-98d1-6f9bc43f5bdc.png)
