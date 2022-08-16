@@ -1,0 +1,141 @@
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ */
+
+configuration {
+    show-icons:                     false;
+	font:                      		"FantasqueSansMono Nerd Font";
+    disable-history:                false;
+	sidebar-mode: 					false;
+}
+
+
+* {
+  accent:           #b4befe;
+  background:       #141c21;
+  background-light: #00000000;
+  foreground:       #93a1a1;
+  background-bar:   #f2f2f215;
+  on:               #5BB462;
+  off:              #DE635E;
+  text-color:       #93a1a1;
+  background-color: #00000000;
+}
+
+
+
+window {
+    transparency:                   "real";
+    background-color:               #f2f2f215;
+    text-color:                     @foreground;
+	border:							3px;
+	border-color:					#b4befe;
+    border-radius:                  12px;
+	width:							40%;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+prompt {
+    enabled: 						true;
+    padding:                        10px;
+	background-color: 				#00000000;
+	text-color: 					@accent;
+    border:                  		0px 2px 0px 2px;
+    border-radius:                  12px;
+    border-color:                  	@accent;
+}
+
+textbox-prompt-colon {
+	expand: 						false;
+	str: 							" System ";
+	background-color: 				@accent;
+	text-color: 					@background;
+    padding:                        10px 10px 0px 10px;
+    border-radius:                  12px;
+}
+
+inputbar {
+	children: 						[ textbox-prompt-colon, prompt ];
+    spacing:                        15px;
+    background-color:               #141c21;
+    text-color:                     #f2f2f215;
+    expand:                         false;
+    border:                  		0px;
+    border-radius:                  12px;
+    border-color:                  	@accent;
+    margin:                         0px 0px 0px 0px;
+    padding:                        0px;
+    position:                       center;
+}
+
+listview {
+    columns:						5;
+    lines:							1;
+    spacing:                        15px;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               #00000000;
+    children:                       [ inputbar, listview ];
+    spacing:                        15px;
+    margin:                         40px;
+    border-radius:                  12px;
+}
+
+element {
+    background-color:               @background;
+    text-color:                     @foreground;
+    orientation:                    vertical;
+    border-radius:                  20px;
+}
+
+element-text {
+    background-color: 				inherit;
+    text-color:       				inherit;
+	font:							"feather 32";
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         40px 0px 40px 0px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @off;
+    text-color:                    #f2f2f215;
+    border-radius:                  20px;
+}
+
+element normal.active,
+element alternate.active {
+    background-color:               @on;
+    text-color:                     @background;
+}
+
+element selected {
+    background-color:               @accent;
+    text-color:                     @background;
+    border:                  		0px;
+    border-radius:                  20px;
+    border-color:                  	#ffb86c;
+}
+
+element selected.urgent {
+    background-color:               @on;
+    text-color:                     #f2f2f215;
+}
+
+element selected.active {
+    background-color:               @off;
+    color:                          @background;
+}
