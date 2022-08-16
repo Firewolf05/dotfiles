@@ -1,1 +1,0 @@
-feh $dir/$file
