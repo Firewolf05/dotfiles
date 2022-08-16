@@ -1,8 +1,9 @@
 # dotfiles
 my configs, probably not a good idea to use as is 
 
-![desktop_1](https://user-images.githubusercontent.com/77410335/183262090-1271abf7-8640-422b-bce4-4eb42a4ac4dd.png)
+![desktop_1](https://user-images.githubusercontent.com/77410335/184893638-6f97570e-b897-4b61-a58c-3ad6cb1a6596.png)
 
-![desktop_2](https://user-images.githubusercontent.com/77410335/183262095-bc91c9ec-0c0f-419f-9c5d-71d38eee3810.png)
+![desktop_2](https://user-images.githubusercontent.com/77410335/184893678-402e9d58-3246-4f54-9471-3609ae438aa3.png)
 
-![desktop_3](https://user-images.githubusercontent.com/77410335/183262100-bbb48726-0d53-44e4-98d1-6f9bc43f5bdc.png)
+![desktop_3](https://user-images.githubusercontent.com/77410335/184893702-0f7e712d-1747-4fd7-88b5-1722d6834eeb.png)
+
