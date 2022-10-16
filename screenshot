@@ -1,16 +1,17 @@
 #!/usr/bin/zsh
 
+grep -x copyq >/dev/null || copyq &! 
+
 time=`date +%Y-%m-%d-%I-%M-%S`
 geometry=`xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
 dir="$HOME/Pictures/screenshots"
 file="Screenshot_${time}_${geometry}.png"
-copya () { grep -x copyq >/dev/null && echo e >/dev/null || copyq &! }
-copyb () { copyq write image/png - < $dir/$file && copyq select 0 }
+copy-img () { copyq write image/png - < $dir/$file && copyq select 0 }
 
 # notify
 notify_user () {
 	if [[ -e "$dir/$file" ]]; then 
-		ACTION=$(dunstify -i $dir/$file --action="clicked,ACTION" "Screenshot Saved")
+		ACTION=$(dunstify -i $dir/$file --action="clicked,ACTION" 'Screenshot Saved')
 		case "$ACTION" in 
 		"clicked")
 			feh $dir/$file
@@ -21,18 +22,17 @@ notify_user () {
 	fi
 }
 
-shotwin () {
-	cd ${dir} && maim -u -f png -i `xdotool getactivewindow` "$file"
-	copya
-	copyb
+
+shotarea () {
+	cd ${dir} && maim -u -f png -s "$file"
+	copy-img
 	notify_user
 }
 
-shotarea () {
-#	cd ${dir} && maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l "$file"  
-	cd ${dir} && maim -u -f png -s "$file"
-	copya
-	copyb
+shotfreeze () {
+	cd ${dir} && maim -u | feh -F - & maim -s "$file" 
+	copy-img
+	pidof feh | { read first rest ; kill $first ; }
 	notify_user
 }
 
@@ -43,10 +43,10 @@ fi
 
 if [[ "$1" == "--area" ]]; then
 	shotarea
-elif [[ "$1" == "--win" ]]; then
-	shotwin
+elif [[ "$1" == "--freeze" ]]; then 
+	shotfreeze
 else
-	echo "Available Options : --win --area"
+	echo "Available Options : --freeze --area"
 fi
 
 exit 0
