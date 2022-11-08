@@ -5,6 +5,7 @@ elif [ $1 == yt ]; then
 fi
 if [ $(bspc query -D -d 'focused' --names) == $var ]; then 
     bspc desktop -f $(cat /tmp/music-player-switch)
+    del /tmp/music-player-switch 
 else 
     bspc query -D -d 'focused' --names > /tmp/music-player-switch
     bspc desktop -f $var 

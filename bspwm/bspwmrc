@@ -4,6 +4,7 @@
 # #                                  ENV VARS                                  # 
 # ##############################################################################
 
+#export PATH="/home/george/scripts"
 export BROWSER=firefox
 export EDITOR=code
 export TERMINAL=
@@ -59,6 +60,7 @@ rule feh state=floating
 rule "SkyClient (Forge 1.8.9)" desktop=2 state=floating
 rule MultiMC desktop=2
 rule PolyMC desktop=2
+rule PrismLauncher desktop=2
 rule "Minecraft 1.12.2" desktop=2 state=floating border=off
 rule "Minecraft 1.8.9" desktop=2 state=floating 
 rule "Minecraft* 1.18.1" desktop=2 state=floating
@@ -67,6 +69,7 @@ rule lunarclient desktop=2
 rule Steam desktop=2 q
 rule steam_app_1145360 desktop=2 border=off 
 rule steam_app_444090 desktop=2
+rule steam_app_960090 desktop=2 
 rule steam_proton desktop=2
 rule heroic desktop=2
 rule PortalWars-Linux-Shipping desktop=2 border=off 
@@ -90,7 +93,7 @@ config presel_feedback_color "#b24744"
 
 #variety
 bash ~/.fehbg &
-#pgrep -x variety >/dev/null && echo e >/dev/null || variety &
+pgrep -x variety >/dev/null && echo e >/dev/null || variety &
 
 #weather 
 ntfd &
