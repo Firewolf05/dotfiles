@@ -1,0 +1,29 @@
+add_newline = false
+[username]
+format = "[╭─](bold blue)[in]($style) "
+style_user = "bold yellow"
+style_root = "bold red"
+show_always = true
+
+# Second param
+[hostname]
+format = "[$hostname]($style) [in](blue) "
+style = "bold yellow"
+trim_at = "-"
+ssh_only = true
+disabled = false
+
+# Third param
+[directory]
+read_only = " "
+read_only_style = "bold red"
+style = "bold cyan"
+truncation_length = 0
+truncate_to_repo = false
+truncation_symbol = "repo: "
+
+[character]
+#success_symbol = "[╰─](bold blue)"
+success_symbol = "[╰─>](bold blue)"
+error_symbol = "[╰─×](bold red)"
+
