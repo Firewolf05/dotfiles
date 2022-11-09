@@ -1,0 +1,70 @@
+zsh="$HOME/.config/zsh"
+ZSH="$HOME/.config/zsh"
+wynn="$HOME/polymc/instances/wynn-1.18/.minecraft/"
+GIT="$HOME/Documents/git-repos"
+HADES="/mnt/1tb-hdd/SteamLibrary/steamapps/common/Hades/"
+HISTSIZE=500000
+HISTFILE=$zsh/history
+SAVEHIST=500000
+setopt    appendhistory
+setopt    sharehistory
+setopt    incappendhistory
+
+setopt autocd
+
+autoload -Uz compinit  
+autoload -Uz colors && colors  
+zstyle :compinstall filename '/home/george/.zshrc'
+compinit
+
+#aliases
+source $zsh/aliases.zsh
+
+#functions
+source $zsh/functions.zsh
+
+#custom binds
+bindkey '^H' backward-kill-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "\e[3~" delete-char
+bindkey "^z" undo
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+#  themes #
+
+#zsh
+source $zsh/theme.zsh
+
+#starship 
+#eval "$(starship init zsh)"
+
+
+#paths  
+source $zsh/paths.zsh 
+
+# plugins #
+source $zsh/syntax-highlighting/zsh-syntax-highlighting.zsh  ## https://github.com/zsh-users/zsh-syntax-highlighting
+source $zsh/autosuggestions/zsh-autosuggestions.zsh  ## https://github.com/zsh-users/zsh-autosuggestions
+source $zsh/auto-ls/auto-ls.zsh  ## https://github.com/Firewolf05/zsh-auto-ls
+source $zsh/zsh-history-substring-search/zsh-history-substring-search.zsh  ## https://github.com/zsh-users/zsh-history-substring-search
+
+plugins () {
+    en="\e[32m "
+    dis="\e[31m "
+    echo
+    echo -e "\e[36mPlugins:"
+    echo -e "   $en ./zsh-syntax-highlighting"
+    echo -e "   $en ./zsh-autosuggestions"
+    echo -e "   $en ./auto-ls"
+    echo -e "   $en ./zsh-history-substring-search"
+    echo -e "   $dis ./oh-my-zsh"
+    echo 
+    echo -e "\e[36mThemes:"
+    echo -e "   $dis ../starship" 
+    echo -e "   $en ./theme.zsh"
+    echo
+}
+
+catfetch 
