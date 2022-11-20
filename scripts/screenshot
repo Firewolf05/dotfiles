@@ -9,6 +9,9 @@ copy-img () { copyq write image/png - < $dir/$file && copyq select 0 }
 
 # notify
 notify_user () {
+	if [ ! $(pgrep copyq) ]; then 
+		dunstify "CopyQ isnt running, screenshots wont be copied to the clickboard"
+	fi
 	if [[ -e "$dir/$file" ]]; then 
 		ACTION=$(dunstify -i $dir/$file --action="clicked,ACTION" 'Screenshot Saved')
 		case "$ACTION" in 
@@ -19,6 +22,7 @@ notify_user () {
 	else
 		dunstify "Screenshot Deleted."
 	fi
+
 }
 
 shotarea () {
