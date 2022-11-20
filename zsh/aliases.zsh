@@ -46,4 +46,3 @@ alias space='duf'
 alias led='g512-led'
 alias rr='ranger'
 alias py='python'
-

@@ -184,3 +184,8 @@ wynnpack () {
     cd $dir 
     del -r /tmp/wynnpack
 }
+
+walset () { 
+    wallpaper-set 
+    swaybg -i "$(cat /tmp/rangerfilechooser)" -m fit &!
+}

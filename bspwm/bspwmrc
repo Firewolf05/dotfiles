@@ -16,8 +16,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for JetBrains IDEs
 
 rule() { bspc rule -a "$@" & }
 config() { bspc config "$@" & }
-start() { pkill -x "$1"; { sleep 0.1; "$@" & }; }
 monitor() { bspc monitor "$@" & }
+start() { pkill -x "$1"; { sleep 0.1; "$@" & }; }
+start_if() { pgrep -x $1 >/dev/null || $@ & }
 
 # ##############################################################################
 # #                            GENERAL CONFIGURATION                           #
@@ -93,7 +94,6 @@ config presel_feedback_color "#b24744"
 
 #variety
 bash ~/.fehbg &
-pgrep -x variety >/dev/null && echo e >/dev/null || variety &
 
 #weather 
 ntfd &
@@ -102,7 +102,8 @@ ntfd &
 exec ~/.config/polybar/scripts/multi-screens.sh &
 
 #picom
-pgrep -x picom >/dev/null && echo e >/dev/null || $(cat ~/.picomlockfile) --config ~/.config/picom/config.conf --experimental-backends &
+#pgrep -x picom >/dev/null || picom --config ~/.config/picom/config.conf --experimental-backends &
+start_if picom --config ~/.config/picom/config.conf --experimental-backends
 
 #mouse settings 
 xsetroot -cursor_name left_ptr &
@@ -113,13 +114,13 @@ xsetroot -cursor_name left_ptr &
 #keyboard layout 
 setxkbmap -layout us,gr &
 setxkbmap -option 'grp:alt_shift_toggle' &
-bash $HOME/.config/bspwm/keyboard-colors &
+$HOME/.config/bspwm/keyboard-colors &
 #g512-led -fx cwave keys 2a
 
 #clipman
 start clipmenud
 start greenclip daemon
-pgrep -x copyq >/dev/null && echo e >/dev/null || copyq & 
+pgrep -x copyq >/dev/null || copyq & 
 
 #dunst
 start dunst 
@@ -135,8 +136,11 @@ numlockx on
 start nm-applet
 
 #sxhkd
-start sxhkd 
+start sxhkd -c ~/.config/bspwm/sxhkdrc
 
 #brightness
 brightness-set $(cat /tmp/brightness-value) &
 #brightness-set 1 
+
+~/scripts/polybar/spotifyd &
+polybar-msg action "#pipewire.hook.0" & 

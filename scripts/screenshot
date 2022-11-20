@@ -1,6 +1,5 @@
 #!/usr/bin/zsh
 
-grep -x copyq >/dev/null || copyq &! 
 
 time=`date +%Y-%m-%d-%I-%M-%S`
 geometry=`xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
@@ -22,7 +21,6 @@ notify_user () {
 	fi
 }
 
-
 shotarea () {
 	cd ${dir} && maim -u -f png -s "$file"
 	copy-img
@@ -36,17 +34,43 @@ shotfreeze () {
 	notify_user
 }
 
-if [[ ! -d "$dir" ]]; then
-	mkdir -p "$dir"
-fi
+imgtotxt () {
+	cd $dir && maim -u -f png -s "$file"
+	tesseract $file text.tmp --psm 6 -l eng txt
+	copyq copy "$(cat text.tmp.txt)"
+	dunstify "Text copied"
+	del text.tmp.txt 
+}
 
 
 if [[ "$1" == "--area" ]]; then
 	shotarea
 elif [[ "$1" == "--freeze" ]]; then 
 	shotfreeze
+elif [[ "$1" == "--img-to-text" ]]; then 
+	imgtotxt
+elif [[ "$1" == "--deps" ]]; then 
+echo 
+cat << EOF
+Dependencies:
+	maim (screenshotting tool)
+	copyq (tool used for clipboard)
+	feh (used to open images/freeze option)
+	dunst (for notifications)
+	tesseract tesseract-data-eng (image to text tool)
+EOF
+echo
+elif [[ "$1" == "--install-deps" ]]; then 
+	echo maim copyq feh dunst tesseract-data-eng tesseract 
+	sudo pacman -Sy maim copyq feh dunst tesseract-data-eng tesseract
 else
-	echo "Available Options : --freeze --area"
+echo
+cat << EOF
+Available Options:
+	--freeze		Freezes the screen (using feh) before taking screenshot (might me weird with more than one screen)
+	--area  		Takes screenshot using selection
+	--img-to-text  		Image to text (experimental, might have issues with special characters)
+	--deps			Lists dependencies
+EOF
+echo
 fi
-
-exit 0

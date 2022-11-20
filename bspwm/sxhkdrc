@@ -2,9 +2,15 @@
 ####                                 KEYBINDS                              ####
 ###############################################################################
 
+#while true; do sleep 1 && while cat ~/autoclicker; do xdotool click 1; done; done
+#if cat ~/autoclicker; then del ~/autoclicker; else touch ~/autoclicker; fi
+
 ####################
 ####   BSPWM    ####
 ####################
+
+
+
 
 # change focus and move focused window #
 super + {_,shift + }{Left,Down,Up,Right}
@@ -21,8 +27,11 @@ super + ~button2
 super + {1-9,0}
 	bspc desktop -f {1-9,10}
 
-alt + {1-5}
-    sh $HOME/.config/bspwm/scripts/desktop-switch-monitor.sh {1-5}
+#alt + {1-5}
+#    sh $HOME/.config/bspwm/scripts/desktop-switch-monitor.sh {1-5}
+
+super + button{4,5}
+    bspc desktop {next,prev}.occupied -f
 
 # send window to workspace and switch #
 super + shift + {1-9,0}
@@ -89,7 +98,7 @@ alt + s
     screenshot --area
     
 super + s 
-    screenshot --freeze 
+    screenshot --img-to-text 
 
 alt +a 
     flameshot screen
@@ -184,7 +193,7 @@ XF86AudioPlay
 
 control + KP_Divide
     playerctl play-pause
-
+    
 XF86AudioNext
     playerctl next
 

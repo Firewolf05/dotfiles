@@ -1,0 +1,4 @@
+DIR=$HOME/Documents/wallpapers/Alena-Aenami # first file/dir of the desired directory so ranger starts from there
+ranger --choosefile /tmp/rangerfilechooser --selectfile $DIR
+file="$(cat /tmp/rangerfilechooser)"
+feh --bg-fill "$file"
