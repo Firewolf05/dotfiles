@@ -71,6 +71,7 @@ Available Options:
 	--area  		Takes screenshot using selection
 	--img-to-text  		Image to text (experimental, might have issues with special characters)
 	--deps			Lists dependencies
+	--install-deps		Installs dependencies (Arch Linux)
 EOF
 echo
 fi
