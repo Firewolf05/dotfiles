@@ -29,6 +29,8 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "\e[3~" delete-char
 bindkey "^z" undo
+bindkey -s '^[[1;5A' "sudo "
+bindkey -s '^[[1;5B' "paru"
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 

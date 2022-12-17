@@ -1,0 +1,7 @@
+while true; do
+    sleep 1 
+    if [[ ! $(cat /tmp/polybarDataSpotify) == $(playerctl --player=spotify metadata -f '{{artist}} - {{title}}')  ]]; then
+         echo "" > /tmp/polybarIconSpotify
+         polybar-msg action "#playerctl-spotify.hook.0" > /dev/null
+    fi
+done 

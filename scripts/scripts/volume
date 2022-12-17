@@ -1,0 +1,79 @@
+#!/bin/bash
+
+DIR="$HOME/.config/dunst/icons"
+
+function is_mute {
+      amixer -D pipewire get Master | grep '%' | grep -oE '[^ ]+$' | grep off
+}
+
+
+function get_volume {
+      if is_mute >/dev/null; then
+        echo 0 
+      else  
+        amixer -D pipewire get Master | grep '%' | head -n 1 | awk -F'[' '{print $2}' | awk -F'%' '{print $1}'
+      fi
+}
+
+
+function return_volume {
+  volume=`get_volume`
+  if [ "$volume" == 0 ] ; then
+    echo "%{u#ed8796}%{F#ed8796} Muted"
+  elif [  "$volume" -lt "10" ]; then
+    echo "$volume%"
+  elif [ "$volume" -lt "30" ]; then
+    echo "$volume%"
+  else 
+    echo " $volume%"
+  fi
+}
+
+function send_notification {
+  volume=`get_volume`
+  if [ "$volume" = "0" ]; then
+    icon_name="$DIR/volume-muted.svg"
+    dunstify "Muted" -a Muted -t 2000 -i $icon_name -r 5555 -u normal 
+  else 
+    if [  "$volume" -lt "10" ]; then
+      icon_name="$DIR/volume-low.svg"
+    elif [ "$volume" -lt "30" ]; then
+      icon_name="$DIR/volume-medium.svg"
+    else
+      icon_name="$DIR/volume-high.svg"
+    fi
+    dunstify "Volume" -a Volume -t 2000 -i $icon_name -r 5555 -u normal -h int:value:$(($volume))
+  fi
+}
+
+case $1 in
+  up)
+	  amixer -D pipewire set Master on > /dev/null
+	  amixer -D pipewire set Master 2%+ > /dev/null
+    send_notification
+    polybar-msg action "#pipewire.hook.0"
+    ;;
+  down)
+	  amixer -D pipewire set Master on > /dev/null
+	  amixer -D pipewire set Master 2%- > /dev/null
+    send_notification
+    polybar-msg action "#pipewire.hook.0"
+    ;;
+  mute)
+	  amixer -D pipewire set Master 1+ toggle > /dev/null
+    if is_mute ; then
+      icon_name="$DIR/volume-muted.svg"
+      dunstify "Muted" -a Muted -t 2000 -i $icon_name -r 5555 -u normal -h int:value:0
+      polybar-msg action "#pipewire.hook.0"
+    else
+      send_notification
+      polybar-msg action "#pipewire.hook.0"
+    fi
+    polybar-msg action "#pipewire.hook.0"
+    ;;
+  get)
+    return_volume
+  ;;
+  *)
+  echo "Available options: up down mute get" 
+esac

@@ -189,3 +189,7 @@ walset () {
     wallpaper-set 
     swaybg -i "$(cat /tmp/rangerfilechooser)" -m fit &!
 }
+
+math () {
+    echo $(($@))
+}
