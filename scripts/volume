@@ -1,29 +1,29 @@
 #!/bin/bash
-# You can call this script like this:
-# $./volume up
-# $./volume down
-# $./volume mute
 
 DIR="$HOME/.config/dunst/icons"
-
-function get_volume {
-      amixer -D pipewire get Master | grep '%' | head -n 1 | awk -F'[' '{print $2}' | awk -F'%' '{print $1}'
-}
 
 function is_mute {
       amixer -D pipewire get Master | grep '%' | grep -oE '[^ ]+$' | grep off
 }
 
+
+function get_volume {
+      if is_mute >/dev/null; then
+        echo 0 
+      else  
+        amixer -D pipewire get Master | grep '%' | head -n 1 | awk -F'[' '{print $2}' | awk -F'%' '{print $1}'
+      fi
+}
+
+
 function return_volume {
   volume=`get_volume`
-  if is_mute >/dev/null; then
-    echo "%{F#ed8796} Muted"
+  if [ "$volume" == 0 ] ; then
+    echo "%{u#ed8796}%{F#ed8796} Muted"
   elif [  "$volume" -lt "10" ]; then
     echo "$volume%"
   elif [ "$volume" -lt "30" ]; then
-    echo " $volume%"
-  elif [ "$volume" -lt "50" ]; then
-    echo " $volume%"
+    echo "$volume%"
   else 
     echo " $volume%"
   fi
@@ -31,20 +31,19 @@ function return_volume {
 
 function send_notification {
   volume=`get_volume`
-  bar=$(seq -s "─" 0 $(($volume / 5)) | sed 's/[0-9]//g')
   if [ "$volume" = "0" ]; then
     icon_name="$DIR/volume-muted.svg"
-    bar=""
-  elif [  "$volume" -lt "10" ]; then
-    icon_name="$DIR/volume-low.svg"
-  elif [ "$volume" -lt "30" ]; then
-    icon_name="$DIR/volume-low.svg"
-  elif [ "$volume" -lt "45" ]; then
-    icon_name="$DIR/volume-medium.svg"
-  else
-    icon_name="$DIR/volume-high.svg"
+    dunstify "Muted" -a Muted -t 2000 -i $icon_name -r 5555 -u normal 
+  else 
+    if [  "$volume" -lt "10" ]; then
+      icon_name="$DIR/volume-low.svg"
+    elif [ "$volume" -lt "30" ]; then
+      icon_name="$DIR/volume-medium.svg"
+    else
+      icon_name="$DIR/volume-high.svg"
+    fi
+    dunstify "Volume" -a Volume -t 2000 -i $icon_name -r 5555 -u normal -h int:value:$(($volume))
   fi
-  dunstify "Volume" -t 3000 -i $icon_name -r 5555 -u normal -h int:value:$(($volume))
 }
 
 case $1 in
@@ -64,12 +63,17 @@ case $1 in
 	  amixer -D pipewire set Master 1+ toggle > /dev/null
     if is_mute ; then
       icon_name="$DIR/volume-muted.svg"
-      dunstify "Mute" -t 3000 -i $icon_name -r 5555 -u normal -h int:value:0 
+      dunstify "Muted" -a Muted -t 2000 -i $icon_name -r 5555 -u normal -h int:value:0
+      polybar-msg action "#pipewire.hook.0"
     else
       send_notification
+      polybar-msg action "#pipewire.hook.0"
     fi
     polybar-msg action "#pipewire.hook.0"
     ;;
   get)
     return_volume
+  ;;
+  *)
+  echo "Available options: up down mute get" 
 esac

@@ -5,6 +5,7 @@
 # ##############################################################################
 
 #export PATH="/home/george/scripts"
+export GCM_CREDENTIAL_STORE=cache
 export BROWSER=firefox
 export EDITOR=code
 export TERMINAL=
@@ -58,7 +59,7 @@ rule "Primenote" state=floating
 bspc rule -a floating state=floating
 rule feh state=floating
 
-rule "SkyClient (Forge 1.8.9)" desktop=2 state=floating
+rule "SkyClient (Forge 1.8.9)" desktop=2 border=off
 rule MultiMC desktop=2
 rule PolyMC desktop=2
 rule PrismLauncher desktop=2
@@ -113,7 +114,6 @@ xsetroot -cursor_name left_ptr &
 
 #keyboard layout 
 setxkbmap -layout us,gr &
-setxkbmap -option 'grp:alt_shift_toggle' &
 $HOME/.config/bspwm/keyboard-colors &
 #g512-led -fx cwave keys 2a
 
@@ -124,7 +124,9 @@ pgrep -x copyq >/dev/null || copyq &
 
 #dunst
 start dunst 
-notify-send "Restarted" -a Bspwm -t 2000 --icon=/home/george/.config/bspwm/restart_icon.png &
+dunstify "Restarted" -a Bspwm -t 2000 --icon=/home/george/.config/bspwm/restart_icon.png 
+if [ -d /usr/share/icons/default ]; then dunstify -t 15000 "/usr/share/icons/default exists, cursor theme might not work properly" --icon=/home/george/.icons/Papirus-Dark/32x32/categories/bell.svg; fi
+
 
 #polkit 
 start gnome-polkit 
@@ -142,5 +144,5 @@ start sxhkd -c ~/.config/bspwm/sxhkdrc
 brightness-set $(cat /tmp/brightness-value) &
 #brightness-set 1 
 
-~/scripts/polybar/spotifyd &
-polybar-msg action "#pipewire.hook.0" & 
+while true; do sleep 1; if [[ ! $(cat /tmp/polybarDataSpotify) == $(playerctl --player=spotify metadata -f '{{artist}} - {{title}}')  ]]; then echo "" > /tmp/polybarIconSpotify; polybar-msg action "#playerctl-spotify.hook.0" > /dev/null; fi; done &
+

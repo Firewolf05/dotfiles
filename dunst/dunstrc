@@ -24,7 +24,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+    width = (0, 300)
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -152,7 +152,7 @@
     #   %%  Literal %
     # Markup is allowed
     # <u><b>%a</b></u> \n
-    format = "%s\n%p%b"
+    format = "%s\n%n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -186,7 +186,7 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = right 
+    icon_position = left 
 
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
@@ -280,3 +280,21 @@ frame_color = "#89B4FA"
     frame_color = "#FAB387"
 
 
+[volume]
+    appname = Volume
+    format="<b>%a</b>\n[%n%%]"
+    history_ignore=yes
+    alignment = right
+    highlight = "#b4befe"
+
+[muted]
+    appname = Muted
+    format="<b>%a</b>\n[%n%%]"
+    history_ignore=yes
+    alignment = right
+    frame_color = "#f38ba8"
+
+[restart]
+    appname = Bspwm
+    format="<b>%a</b>\n%s"
+    alignment = left

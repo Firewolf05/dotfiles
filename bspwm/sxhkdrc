@@ -9,13 +9,15 @@
 ####   BSPWM    ####
 ####################
 
-
-
+super + k 
+    dunstify $(xdotool getwindowname $(xdotool getactivewindow))
 
 # change focus and move focused window #
 super + {_,shift + }{Left,Down,Up,Right}
-    bspc node --{focus,swap} {west,south,north,east}
-
+    mode=$(bspc query -T -d | jq -r .layout); \ 
+    [[ "$mode" == "tiled" ]] && bspc node --{focus,swap} {west,south,north,east}; \ 
+    [[ "$mode" == "monocle" ]] && bspc node --{focus,swap} {prev,next,prev,next}.local
+    
 # kill the focused window
 super + q
     bspc node -c
@@ -69,6 +71,10 @@ super + r
 super + Escape
     sh ~/.config/bspwm/scripts/afk.sh
 
+# change language #
+alt + Shift_L 
+    ~/scripts/bspwm/layoutswitch.sh
+
 # picom #
 super + control + c 
     pgrep picom >/dev/null && pkill picom || $(cat ~/.picomlockfile) --config ~/.config/picom/config.conf --experimental-backends &
@@ -91,7 +97,7 @@ super + grave
 
 # color picker #
 super + p
-  bash xcolor-pick
+  xcolor-pick
 
 # Screenshots #
 alt + s 
@@ -119,7 +125,7 @@ super + a
     rofi -no-lazy-grab -show window -modi drun,window -theme ~/.config/rofi-own/catppuccin.rasi
 
 alt + Tab 
-    rofi -no-lazy-grab -show window -modi drun,window -theme ~/.config/rofi-own/catppuccin.rasi
+    rofi -no-lazy-grab -show window -modi window -theme ~/.config/rofi-own/catppuccin.rasi
 
 #clipmenu-2 selection 
 super + c 

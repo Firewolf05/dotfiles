@@ -4,8 +4,14 @@
 time=`date +%Y-%m-%d-%I-%M-%S`
 geometry=`xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
 dir="$HOME/Pictures/screenshots"
+mc-wname="Minecraft*"
 file="Screenshot_${time}_${geometry}.png"
 copy-img () { copyq write image/png - < $dir/$file && copyq select 0 }
+
+if [[ "$(current-window.sh)" == Minecraft* ]]; then 
+	dir="$HOME/.local/share/PrismLauncher/instances/wynn-1.18/.minecraft/screenshots"
+	file=$(date +%Y-%m-%d_%H.%M.%S)_screenshot.png
+fi 
 
 # notify
 notify_user () {
