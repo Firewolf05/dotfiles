@@ -16,7 +16,7 @@ rm -r $dots/stalonetrayrc && cp $cfg/stalonetrayrc $dots/ && echo Copied stalone
 rm -r $dots/starship.toml && cp $cfg/starship.toml $dots/ && echo Copied starship config && x=$((x+1))
 
 # scripts 
-rm -r $dots/scripts && cp -r $HOME/scripts $dots/scripts && echo Copied scripts && x=$((x+1))
+rm -r $dots/scripts && cp -r $HOME/scripts $dots/scripts && rm -r $dots/scripts/wip && echo Copied scripts && x=$((x+1))
 
 # zsh 
 rm -r $dots/zsh/* && cp -r $cfg/zsh/aliases.zsh $cfg/zsh/functions.zsh $cfg/zsh/theme.zsh $cfg/zsh/zshrc $dots/zsh && echo Copied zsh config && x=$((x+1))
