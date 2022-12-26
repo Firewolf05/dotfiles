@@ -2,61 +2,29 @@ price () {
     curl -X GET moulberry.codes/lowestbin.json -s | jq ."${1:u}"
 }
 
-__unzip () {
-    if [[ $1 == "-help" ]] then 
-        echo -e "\e[31m ===> \e[32munzip\e[0m [source] [target directory]"
-    else   
-        if [[ ! -f "$1" ]]; then 
-            echo "File \e[31m$1\e[0m does not exist, exiting" 
-            exit 
-        fi
-        if [ -n "$2" ]; then 
-            dir=$2
-            check="1"
-        else 
-            dir=$(echo "${1%.*}")
-            check="2"
-        fi
-        if [[ -d "$(pwd)/$dir" ]] then 
-            if [[ -d "$(pwd)/$dir-2" ]] then
-                echo -e "\e[31merror:\e[0m folder already exists (2), could \e[31mnot\e[0m extract"
-                exit 1
-            fi
-            mkdir $dir-2
-            cd $dir-2
-            if [ $check = "1" ]; then 
-                echo -e "Directory already exists, extracted into \e[32m$dir-2 \e[0minstead"
-            else 
-                echo -e "No directory given, extracting into \e[32m$dir\e[0m"
-                echo -e "Directory already exists, extracted into \e[32m$dir-2 \e[0minstead"
-            fi
-        else
-            mkdir $dir
-            cd $dir
-            if [ $check = "1" ]; then 
-                echo -e "Successfully extracted into \e[32m$dir\e[0m"
-            else 
-                echo -e "No directory given, extracted into \e[32m$dir\e[0m"
-            fi
-        fi
-        bsdtar xvf ../$1
-        cd - >/dev/null
-    fi 
-}
 
-
-rm () {
-    if [[ -d "$HOME/.trash/$1" ]] then 
-        mv $@ ~/.trash/$1-2
-    else 
-        mv $@ ~/.trash/
+cltr () {
+    echo -n "Are you sure you want to clear the trash folder? (yes/no): "
+    read ans 
+    if [ $ans = "yes" ]; then  
+        /usr/bin/rm -r $HOME/.trash/*
     fi
 }
 
-cltr () {
-    sudo rmd 
-    mkdir ~/.trash
+rm () {
+for i in $@ 
+do 
+    fl=$HOME/.trash/$i
+    x="1"
+    while [ -f "$fl" ] 
+    do  
+        fl="$fl($x)"
+        x=$((x+1))
+    done
+    mv $i $fl
+done
 }
+
 
 _s () {
     if [[ $(pwd) == $HOME/.config/spicetify ]]
@@ -124,10 +92,6 @@ function picoms () {
 
 function neovim () {
     kitty sh -c "nvim $@"
-}
-
-setwall () {
-    variety --set=$(pwd)/$@
 }
 
 

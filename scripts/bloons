@@ -6,7 +6,8 @@ enable () {
     mv $modsDir/version.dll $gameDir/version.dll && x=$((x+1))
     mv $modsDir/MelonLoader $gameDir/MelonLoader && x=$((x+1))
     mv $modsDir/Mods $gameDir/Mods && x=$((x+1))
-    if [ $x == 3 ]; then 
+    mv $modsDir/nethost.dll $gameDir/nethost.dll && x=$((x+1))
+    if [ $x == 4 ]; then 
         echo Enabled > $modsDir/lockfile
         echo Enabled mods
     else 
@@ -19,7 +20,8 @@ disable () {
     mv $gameDir/version.dll $modsDir/version.dll && x=$((x+1))
     mv $gameDir/MelonLoader $modsDir/MelonLoader && x=$((x+1))
     mv $gameDir/Mods $modsDir/Mods && x=$((x+1))
-    if [ $x == 3 ]; then 
+    mv $gameDir/nethost.dll $modsDir/nethost.dll && x=$((x+1))
+    if [ $x == 4 ]; then 
         echo Disabled > $modsDir/lockfile
         echo Disabled mods
     else 

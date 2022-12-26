@@ -145,21 +145,28 @@ super + Return
 super + slash
     kitty --class=floating --config=$HOME/.config/kitty/floating.conf
 
-# firefox #
-super + F4
-    firefox
+# prismlauncher #
+super + F1 
+    prismlauncher
 
+# steam #
+super + F2
+    if pgrep steam; then steam -foreground; else steam & fi
 # discord #
 super + F3
     discord
+
+# firefox #
+super + F4
+    firefox
 
 # spotify # 
 super + F5
     spotify 
 
 # thunar # 
-super + F1 
-    thunar 
+#super + F1 
+#    thunar 
 
 # jgmenu #
 ~button3

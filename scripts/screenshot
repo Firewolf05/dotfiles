@@ -9,7 +9,7 @@ file="Screenshot_${time}_${geometry}.png"
 copy-img () { copyq write image/png - < $dir/$file && copyq select 0 }
 
 if [[ "$(current-window.sh)" == Minecraft* ]]; then 
-	dir="$HOME/.local/share/PrismLauncher/instances/wynn-1.18/.minecraft/screenshots"
+	dir="$HOME/.local/share/PrismLauncher/instances/wynn-1.19.3/.minecraft/screenshots"
 	file=$(date +%Y-%m-%d_%H.%M.%S)_screenshot.png
 fi 
 

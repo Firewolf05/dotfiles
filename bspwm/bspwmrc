@@ -10,6 +10,8 @@ export BROWSER=firefox
 export EDITOR=code
 export TERMINAL=
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for JetBrains IDEs
+export DOTNET_ROOT=~/.dotnet
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 # ##############################################################################
 # #                                  FUNCTIONS                                 # 
@@ -54,7 +56,7 @@ rule Lxappearance state=floating
 rule Gpick state=floating
 rule Nm-connection-editor state=floating
 rule copyq state=floating
-rule Library state=floating
+rule Places state=floating
 rule "Primenote" state=floating
 bspc rule -a floating state=floating
 rule feh state=floating
@@ -63,10 +65,10 @@ rule "SkyClient (Forge 1.8.9)" desktop=2 border=off
 rule MultiMC desktop=2
 rule PolyMC desktop=2
 rule PrismLauncher desktop=2
-rule "Minecraft 1.12.2" desktop=2 state=floating border=off
-rule "Minecraft 1.8.9" desktop=2 state=floating 
-rule "Minecraft* 1.18.1" desktop=2 state=floating
+rule "Minecraft 1.8.9" desktop=2 border=off
+rule "Minecraft 1.12.2" desktop=2 border=off
 rule "Minecraft* 1.18.2" desktop=2 border=off
+rule "Minecraft* 1.19.3" desktop=2 border=off
 rule lunarclient desktop=2
 rule Steam desktop=2 q
 rule steam_app_1145360 desktop=2 border=off 
