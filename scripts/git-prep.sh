@@ -27,3 +27,7 @@ if [ $x == 11 ]; then
 else 
     echo Something failed 
 fi
+
+echo "git add ."
+echo "git commit -m <commit name>"
+echo "git push -u origin main"
