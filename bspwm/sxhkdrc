@@ -10,7 +10,7 @@
 ####################
 
 super + k 
-    dunstify $(xdotool getwindowname $(xdotool getactivewindow))
+    dunstify "$(xdotool getwindowname $(xdotool getactivewindow))"
 
 # change focus and move focused window #
 super + {_,shift + }{Left,Down,Up,Right}

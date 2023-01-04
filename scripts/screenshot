@@ -1,16 +1,31 @@
 #!/usr/bin/zsh
 
-
 time=`date +%Y-%m-%d-%I-%M-%S`
 geometry=`xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
 dir="$HOME/Pictures/screenshots"
-mc-wname="Minecraft*"
 file="Screenshot_${time}_${geometry}.png"
 copy-img () { copyq write image/png - < $dir/$file && copyq select 0 }
 
+
+# custom screenshot directories 
 if [[ "$(current-window.sh)" == Minecraft* ]]; then 
 	dir="$HOME/.local/share/PrismLauncher/instances/wynn-1.19.3/.minecraft/screenshots"
 	file=$(date +%Y-%m-%d_%H.%M.%S)_screenshot.png
+fi 
+
+if [[ "$(current-window.sh)" == "Hades" ]]; then 
+	bspc desktop -l monocle 
+	bspc node -t tiled
+	ACTION=$(dunstify -t 5000 --action="clicked,ACTION" 'Click here to save screenshot as a win')
+	bspc node -t fullscreen
+	case "$ACTION" in 
+		"clicked")
+			dir="$HOME/Pictures/Hades"
+			echo $(($(cat  ~/Pictures/Hades/count)+1)) > ~/Pictures/Hades/count
+			file="hades$(cat  ~/Pictures/Hades/count).png"
+			sleep 1 
+			;;
+	esac
 fi 
 
 # notify
@@ -27,6 +42,9 @@ notify_user () {
 		esac
 	else
 		dunstify "Screenshot Deleted."
+		if [ $dir = "$HOME/Pictures/Hades" ]; then 
+			echo $(($(cat  ~/Pictures/Hades/count)-1)) > ~/Pictures/Hades/count
+		fi 
 	fi
 
 }

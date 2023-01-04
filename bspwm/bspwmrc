@@ -127,7 +127,7 @@ pgrep -x copyq >/dev/null || copyq &
 #dunst
 start dunst 
 dunstify "Restarted" -a Bspwm -t 2000 --icon=/home/george/.config/bspwm/restart_icon.png 
-if [ -d /usr/share/icons/default ]; then dunstify -t 15000 "/usr/share/icons/default exists, cursor theme might not work properly" --icon=/home/george/.icons/Papirus-Dark/32x32/categories/bell.svg; fi
+#if [ -d /usr/share/icons/default ]; then dunstify -t 15000 "/usr/share/icons/default exists, cursor theme might not work properly" --icon=/home/george/.icons/Papirus-Dark/32x32/categories/bell.svg; fi
 
 
 #polkit 
