@@ -38,13 +38,14 @@ p=pk
 pk="$(pacman -Q | wc -l)"
 
 u=up
-up="$(awk '{print int($1/3600)"h:"int(($1%3600)/60)"m"}' /proc/uptime)"
+up="$(uptime -p | sed -e 's/up //g')"
+#up="$(awk '{print int($1/3600)"h,"int(($1%3600)/60)"m"}' /proc/uptime)"
 
 cat << EOF
 
-  ／|、        $f3$o $t~ arch 
-（ﾟ､ ｡ 7       $f1$u $t~ $up
-  l、  ~ヽ     $f6$h $t~ $wmname
-  じしf_, )ノ  $f5$p $t~ $pk
+  ／l、          $f3$o $t~ arch    
+（ﾟ､ ｡７         $f1$u $t~ $up
+  l  ~ヽ         $f6$h $t~ $wmname
+  じしf_,)ノ     $f5$p $t~ $pk
 
 EOF

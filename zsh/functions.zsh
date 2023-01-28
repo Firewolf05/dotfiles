@@ -133,7 +133,7 @@ trolling () {
     cp $HOME/Documents/stuff/random-mc-stuff/wynntils/wynntils-1.1.0+327.MC1.18.2-fabric.jar /home/george/polymc/instances/wynn-1.18/.minecraft/mods
 }
 
-wynnpack () { 
+__wynnpack () { 
     mkdir /tmp/wynnpack 
     cp $1 /tmp/wynnpack/$1 
     dir=$(pwd)

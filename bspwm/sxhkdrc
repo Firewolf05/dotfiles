@@ -29,9 +29,6 @@ super + ~button2
 super + {1-9,0}
 	bspc desktop -f {1-9,10}
 
-#alt + {1-5}
-#    sh $HOME/.config/bspwm/scripts/desktop-switch-monitor.sh {1-5}
-
 super + button{4,5}
     bspc desktop {next,prev}.occupied -f
 
@@ -202,19 +199,19 @@ XF86AudioMute
 
 # playerctl control # 
 XF86AudioPlay
-    playerctl play-pause
+    playerctl $(cat ~/.module-playerctl) play-pause
 
 control + KP_Divide
-    playerctl play-pause
+    playerctl $(cat ~/.module-playerctl) play-pause
     
 XF86AudioNext
-    playerctl next
+    playerctl $(cat ~/.module-playerctl) next
 
 XF86AudioPrev
-    playerctl previous
+    playerctl $(cat ~/.module-playerctl) previous
 
 XF86AudioStop
-    playerctl stop
+    playerctl $(cat ~/.module-playerctl) stop
 
 # power-menu #
 #1

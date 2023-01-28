@@ -31,4 +31,5 @@ fi
 echo "git add ."
 echo "git commit -m <commit name>"
 echo "git push -u origin main"
-cd ~/dotfiles
+cd $dots 
+$SHELL 

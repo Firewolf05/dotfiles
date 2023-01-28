@@ -1,0 +1,15 @@
+#! /usr/bin/sh
+
+mkdir /tmp/wynnpack
+cp $1 /tmp/wynnpack/$1
+dir=$(pwd) 
+cd /tmp/wynnpack 
+jar -xf $1
+/usr/bin/rm $1 
+d=$(date '+%d-%m') 
+df=$(date '+%a %b %d %H:%M')
+echo '{"pack":{"pack_format":8,"description":"§7WynnResourcePack - 2.0\n§a(1.18, '$df')"}}' > pack.mcmeta
+zip -r WynnPack-$d.zip assets/ pack.mcmeta pack.png
+mv WynnPack-$d.zip $dir/
+cd $dir
+/usr/bin/rm -r /tmp/wynnpack

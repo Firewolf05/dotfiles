@@ -1,4 +1,23 @@
-DIR=$HOME/Documents/wallpapers/Alena-Aenami # first file/dir of the desired directory so ranger starts from there
-ranger --choosefile /tmp/rangerfilechooser --selectfile $DIR
-file="$(cat /tmp/rangerfilechooser)"
-feh --bg-fill "$file"
+temp=/tmp/rangerfilechooser 
+hist=$HOME/Documents/wallpapers/.history/
+
+sel () { 
+    ranger --choosefile $temp --selectfile $HOME/Documents/wallpapers/Alena-Aenami 
+    feh --bg-fill "$(cat $temp)"
+    cp "$(cat $temp)" ${hist}
+    if [ -f ${hist}1 ]; then /bin/rm ${hist}1; fi
+}
+
+history () { 
+    ranger -r $HOME/.config/ranger/sec --choosefile $temp --selectfile ${hist}$(/bin/ls -tr ${hist} | tail -1)
+    feh --bg-fill "$(cat $temp)"
+}
+
+if [ $1 = "select" ]; then 
+    sel 
+elif [ $1 = "history" ]; then 
+    history
+elif [ $1 = "clr-history" ]; then 
+    /bin/rm ${hist}*
+    echo "No recent wallpapers" > ${hist}1 
+fi 

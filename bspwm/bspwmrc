@@ -145,6 +145,7 @@ start sxhkd -c ~/.config/bspwm/sxhkdrc
 #brightness
 brightness-set $(cat /tmp/brightness-value) &
 #brightness-set 1 
+volume up 
 
 while true; do sleep 1; if [[ ! $(cat /tmp/polybarDataSpotify) == $(playerctl --player=spotify metadata -f '{{artist}} - {{title}}')  ]]; then echo "" > /tmp/polybarIconSpotify; polybar-msg action "#playerctl-spotify.hook.0" > /dev/null; fi; done &
 
