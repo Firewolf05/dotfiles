@@ -1,8 +1,9 @@
 temp=/tmp/rangerfilechooser 
+dir=$HOME/Documents/wallpapers/
 hist=$HOME/Documents/wallpapers/.history/
 
 sel () { 
-    ranger --choosefile $temp --selectfile $HOME/Documents/wallpapers/Alena-Aenami 
+    ranger --choosefile $temp --selectfile ${dir}$(/bin/ls --group-directories-first | head -1)
     feh --bg-fill "$(cat $temp)"
     cp "$(cat $temp)" ${hist}
     if [ -f ${hist}1 ]; then /bin/rm ${hist}1; fi
@@ -11,6 +12,10 @@ sel () {
 history () { 
     ranger -r $HOME/.config/ranger/sec --choosefile $temp --selectfile ${hist}$(/bin/ls -tr ${hist} | tail -1)
     feh --bg-fill "$(cat $temp)"
+    file=$(basename $(cat $temp))
+    cp $(cat $temp) /tmp/$file 
+    /bin/rm $(cat $temp)
+    mv "/tmp/$file" ${hist}
 }
 
 if [ $1 = "select" ]; then 

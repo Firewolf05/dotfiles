@@ -1,7 +1,6 @@
 #!/bin/bash
 # Tiny colored fetch script
-# Requires Typicons Font to display the icons
-# elenapan @ github
+# elenapan @ github || edited by Firewolf05 @ github 
 
 f=3 b=4
 for j in f b; do
@@ -26,19 +25,12 @@ shell=$(basename $SHELL)
 o=os
 os="$(uname -s)"
 
-# (\ /)
-# ( · ·)
-# c(")(")
-
-# (\ /)
-# ( . .)
-# c(")(")
 
 p=pk
 pk="$(pacman -Q | wc -l)"
 
 u=up
-up="$(uptime -p | sed -e 's/up //g')"
+up="$(uptime -p | sed -e 's/up //g'| sed -e 's/ hours/h/g' | sed -e 's/ minutes/m/g' | sed -e 's/,//g')"
 #up="$(awk '{print int($1/3600)"h,"int(($1%3600)/60)"m"}' /proc/uptime)"
 
 cat << EOF

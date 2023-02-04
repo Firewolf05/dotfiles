@@ -128,10 +128,6 @@ up () {
     echo " "
 }
 
-trolling () {
-    del /home/george/polymc/instances/wynn-1.18/.minecraft/mods/wynntils-1.1.0+367.MC1.18.2-fabric.jar
-    cp $HOME/Documents/stuff/random-mc-stuff/wynntils/wynntils-1.1.0+327.MC1.18.2-fabric.jar /home/george/polymc/instances/wynn-1.18/.minecraft/mods
-}
 
 __wynnpack () { 
     mkdir /tmp/wynnpack 
@@ -149,10 +145,6 @@ __wynnpack () {
     del -r /tmp/wynnpack
 }
 
-walset () { 
-    wallpaper-set 
-    swaybg -i "$(cat /tmp/rangerfilechooser)" -m fit &!
-}
 
 math () {
     echo $(($@))

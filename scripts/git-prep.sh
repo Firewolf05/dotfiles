@@ -6,6 +6,7 @@ x=0
 
 # configs 
 rm -r $dots/bspwm && cp -r $cfg/bspwm $dots/ && echo Copied bspwm config && x=$((x+1))
+rm -r $dots/ranger && cp -r $cfg/ranger $dots/ && echo Copied ranger config && x=$((x+1))
 rm -r $dots/dunst && cp -r $cfg/dunst $dots/ && echo Copied dunst config && x=$((x+1))
 rm -r $dots/kitty && cp -r $cfg/kitty $dots/ && echo Copied kitty config && x=$((x+1))
 rm -r $dots/neofetch && cp -r $cfg/neofetch $dots/ && echo Copied neofetch config && x=$((x+1))
@@ -22,7 +23,7 @@ rm -r $dots/scripts && cp -r $HOME/scripts $dots/scripts && rm -r $dots/scripts/
 rm -r $dots/zsh/* && cp -r $cfg/zsh/aliases.zsh $cfg/zsh/functions.zsh $cfg/zsh/theme.zsh $cfg/zsh/zshrc $dots/zsh && echo Copied zsh config && x=$((x+1))
 
 echo
-if [ $x == 11 ]; then
+if [ $x == 12 ]; then
     echo Copied everything successfully 
 else 
     echo Something failed 
