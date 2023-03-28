@@ -2,7 +2,7 @@
 command=$(xdotool getmouselocation --shell | cut -b 3,4,5,6  | sed -n '2 p')
 
 if_polybar () {
-    if (($command > 40)); then 
+    if (($command > 31)); then 
         if [ -f ~/.jgmenu-lockfile ]; then
             del ~/.jgmenu-lockfile
             pgrep jgmenu >/dev/null && pkill jgmenu && jgmenu || jgmenu 

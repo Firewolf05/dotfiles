@@ -22,6 +22,7 @@ config() { bspc config "$@" & }
 monitor() { bspc monitor "$@" & }
 start() { pkill -x "$1"; { sleep 0.1; "$@" & }; }
 start_if() { pgrep -x $1 >/dev/null || $@ & }
+startup() { pgrep -i $1 >/dev/null || $1 & }
 
 # ##############################################################################
 # #                            GENERAL CONFIGURATION                           #
@@ -29,6 +30,8 @@ start_if() { pgrep -x $1 >/dev/null || $@ & }
 
 config pointer_modifier Mod4
 config focus_follows_pointer true
+config single_monocle true
+config borderless_monocle true
 if [[ ! -f /tmp/borders ]]; then 
     bspc config border_width 2
     del /tmp/borders
@@ -110,14 +113,12 @@ start_if picom --config ~/.config/picom/config.conf --experimental-backends
 
 #mouse settings 
 xsetroot -cursor_name left_ptr &
-#xset m 0 0 
-#xinput set-prop 13 300 -0.4
-#xinput set-prop 16 156 0 ## disable second keyboard 
+xinput set-prop 'Mice&MultiKB USB product Mice&MultiKB USB product' 'libinput Accel Speed' -0.8
 
 #keyboard layout 
 setxkbmap -layout us,gr &
 $HOME/.config/bspwm/keyboard-colors &
-#g512-led -fx cwave keys 2a
+#g512-led -fx cwave keys 1a
 
 #clipman
 start clipmenud
@@ -145,7 +146,12 @@ start sxhkd -c ~/.config/bspwm/sxhkdrc
 #brightness
 brightness-set $(cat /tmp/brightness-value) &
 #brightness-set 1 
-volume up 
+#volume up 
+
+
+## Autostart ##
+startup discord 
+
 
 while true; do sleep 1; if [[ ! $(cat /tmp/polybarDataSpotify) == $(playerctl --player=spotify metadata -f '{{artist}} - {{title}}')  ]]; then echo "" > /tmp/polybarIconSpotify; polybar-msg action "#playerctl-spotify.hook.0" > /dev/null; fi; done &
 

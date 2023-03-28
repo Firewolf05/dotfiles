@@ -32,6 +32,9 @@ super + {1-9,0}
 super + button{4,5}
     bspc desktop {next,prev}.occupied -f
 
+super + control + {Right,Left}
+    bspc desktop {next,prev} -f
+
 # send window to workspace and switch #
 super + shift + {1-9,0}
     bspc node -d {1-9,10} --follow 

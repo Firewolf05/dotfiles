@@ -1,3 +1,9 @@
+dl () {
+    file=${1##*/}
+    curl -L -o $file $1 
+    echo $file
+}
+
 price () {
     curl -X GET moulberry.codes/lowestbin.json -s | jq ."${1:u}"
 }
@@ -26,29 +32,6 @@ done
 }
 
 
-_s () {
-    if [[ $(pwd) == $HOME/.config/spicetify ]]
-    then 
-        if [[ $1 == "c" ]]
-        then 
-            if [[ $2 == "ct" ]]
-            then 
-                spicetify config current_theme $3
-            elif [[ $2 == "cs" ]]
-            then
-                spicetify config color_scheme $3
-            fi
-        elif [[ $1 == a ]]
-        then 
-            spicetify apply
-        else 
-            spicetify $@
-        fi
-    else 
-        cd ~/.config/spicetify
-    fi 
-}
-
 _test () {
     echo -e "\e[31merror:\e[0m Not testing anything currently"
 }
@@ -58,11 +41,6 @@ chjv () {
     sudo archlinux-java set java-$1-openjdk
 }
 
-fix-att () {
-    sudo rm /usr/share/applications/archlinux-tweak-tool.desktop 
-    sudo cp ~/.config/archlinux-tweak-tool/archlinux-tweak-tool.desktop /usr/share/applications/archlinux-tweak-tool.desktop
-}   
-
 .r () {
     cd /mnt/1tb-hdd/SteamLibrary/steamapps/common/Hades/Content/ >/dev/null 
     python modimporter.py
@@ -71,7 +49,8 @@ fix-att () {
 
 clone () {
     cd $HOME/Documents/git-repos
-    git clone $@ 
+    git clone $1
+    cd  ${1##*/}
 }
 
 

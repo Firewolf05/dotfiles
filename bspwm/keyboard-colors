@@ -1,5 +1,6 @@
-#!/bin/zsh 
-g512-led -gn keys bd93f9
+#!/bin/zsh
+
+g512-led -gn keys 89b4fa
 g512-led -gn fkeys ff79c6
 g512-led -gn arrows ff5555
 g512-led -gn numeric bd93f9
@@ -9,7 +10,7 @@ g512-led -kn tab ff79c6
 g512-led -kn capslock ff79c6
 g512-led -kn backspace ff79c6
 g512-led -kn enter ff79c6
-g512-led -kn space ff79c6 
+#g512-led -kn space 89b4fa
 g512-led -kn escape ff79c6
 #g512-led -kn tilde ff79c6
 g512-led -c 
