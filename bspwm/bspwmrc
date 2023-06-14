@@ -22,7 +22,7 @@ config() { bspc config "$@" & }
 monitor() { bspc monitor "$@" & }
 start() { pkill -x "$1"; { sleep 0.1; "$@" & }; }
 start_if() { pgrep -x $1 >/dev/null || $@ & }
-startup() { pgrep -i $1 >/dev/null || $1 & }
+startup() { pgrep -i $1 >/dev/null || $@ & }
 
 # ##############################################################################
 # #                            GENERAL CONFIGURATION                           #
@@ -63,6 +63,8 @@ rule Places state=floating
 rule "Primenote" state=floating
 bspc rule -a floating state=floating
 rule feh state=floating
+rule "Spotify" desktop=5
+rule Bitwarden state=floating 
 
 rule "SkyClient (Forge 1.8.9)" desktop=2 border=off
 rule MultiMC desktop=2
@@ -113,7 +115,7 @@ start_if picom --config ~/.config/picom/config.conf --experimental-backends
 
 #mouse settings 
 xsetroot -cursor_name left_ptr &
-xinput set-prop 'Mice&MultiKB USB product Mice&MultiKB USB product' 'libinput Accel Speed' -0.8
+xinput set-prop 'Mice&MultiKB USB product Mice&MultiKB USB product' 'libinput Accel Speed' -0.7
 
 #keyboard layout 
 setxkbmap -layout us,gr &
@@ -154,4 +156,6 @@ startup discord
 
 
 while true; do sleep 1; if [[ ! $(cat /tmp/polybarDataSpotify) == $(playerctl --player=spotify metadata -f '{{artist}} - {{title}}')  ]]; then echo "" > /tmp/polybarIconSpotify; polybar-msg action "#playerctl-spotify.hook.0" > /dev/null; fi; done &
+
+
 

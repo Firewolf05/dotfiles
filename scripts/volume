@@ -46,30 +46,33 @@ function send_notification {
   fi
 }
 
+if [[ $2 ]]; then
+    amount=$2
+else 
+  amount="2"
+fi
+
+
 case $1 in
   up)
 	  amixer -D pipewire set Master on > /dev/null
-	  amixer -D pipewire set Master 2%+ > /dev/null
+	  amixer -D pipewire set Master $amount%+ > /dev/null
     send_notification
-    polybar-msg action "#pipewire.hook.0"
     ;;
   down)
 	  amixer -D pipewire set Master on > /dev/null
-	  amixer -D pipewire set Master 2%- > /dev/null
-    send_notification
-    polybar-msg action "#pipewire.hook.0"
+	  amixer -D pipewire set Master $amount%- > /dev/null
+    send_notification  
     ;;
   mute)
 	  amixer -D pipewire set Master 1+ toggle > /dev/null
     if is_mute ; then
       icon_name="$DIR/volume-muted.svg"
       dunstify "Muted" -a Muted -t 2000 -i $icon_name -r 5555 -u normal -h int:value:0
-      polybar-msg action "#pipewire.hook.0"
     else
       send_notification
-      polybar-msg action "#pipewire.hook.0"
+       
     fi
-    polybar-msg action "#pipewire.hook.0"
     ;;
   get)
     return_volume
@@ -77,3 +80,5 @@ case $1 in
   *)
   echo "Available options: up down mute get" 
 esac
+
+

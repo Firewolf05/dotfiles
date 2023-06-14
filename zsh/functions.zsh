@@ -1,7 +1,26 @@
+update () {
+    echo
+    echo -e "\e[32m:: Paru\e[0m"
+    echo
+    paru 
+    echo 
+    echo -e "\e[32m:: Flatpak\e[0m"
+    echo
+    flatpak update 
+}
+
+
+class () {
+    class=$(xprop WM_CLASS) 
+    echo $class
+    copyq copy $class > /dev/null
+}
+
+
 dl () {
     file=${1##*/}
-    curl -L -o $file $1 
     echo $file
+    curl -L -o $file $1 
 }
 
 price () {
@@ -84,29 +103,6 @@ alias z='_reload'
 gitclone () { 
     git clone https://github.com/$@
 }
-
-up () { 
-    echo " "
-    echo -e "\e[35m:: \e[0mLooking for \e[96mpacman/AUR \e[0mupdates"
-    echo " "
-    yay
-    echo " "
-    echo "-------------------------------------------------------------"
-    echo " "
-#    echo -e "\e[35m:: \e[0mLooking for \e[96mFlatpak \e[0mupdates"
-#    echo " "
-#    flatpak update 
-#    echo " "
-#    echo "-------------------------------------------------------------"
-#    echo " "
-    echo -e "\e[35m:: \e[0mLooking for \e[96mArtemis \e[0mupdates"
-    echo " "
-    artemis
-    echo " "
-    echo "-------------------------------------------------------------"
-    echo " "
-}
-
 
 __wynnpack () { 
     mkdir /tmp/wynnpack 

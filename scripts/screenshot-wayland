@@ -1,0 +1,44 @@
+#!/usr/bin/zsh
+
+time=`date +%Y-%m-%d-%I-%M-%S`
+dir="$HOME/Pictures/screenshots-wayland"
+file="Screenshot_${time}.png"
+
+## Add Minecraft and Hades cases 
+
+notify_user () {
+	if [[ -e "$dir/$file" ]]; then 
+		ACTION=$(dunstify -i $dir/$file --action="clicked,ACTION" 'Screenshot Saved')
+		case "$ACTION" in 
+		"clicked")
+			feh $dir/$file
+			;;
+		esac
+	else
+		dunstify "Screenshot Deleted."
+	fi
+
+}
+
+shotarea () { 
+	grim -g "$(slurp)" ${dir}/${file} 
+	wl-copy < ${dir}/${file}
+	notify_user 
+}
+
+## Add area freeze 
+
+imgtotxt () {
+	grim -g "$(slurp)" ${dir}/${file} 
+	tesseract ${dir}/${file} /tmp/text.tmp --psm 6 -l eng txt
+	wl-copy $(cat /tmp/text.tmp.txt)
+	dunstify "Text copied"
+}
+
+if [[ "$1" == "--area" ]]; then
+    shotarea
+#elif [[ "$1" == "--freeze" ]]; then 
+#	shotfreeze
+elif [[ "$1" == "--img-to-text" ]]; then 
+	imgtotxt
+fi

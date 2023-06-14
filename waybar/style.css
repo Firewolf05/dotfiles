@@ -1,0 +1,69 @@
+
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   WeatherIcons, "icomoon\-feather", Iosevka;
+    font-size:     15px;
+    box-shadow:    none;
+    text-shadow:   none;
+    transition-duration: 0s;
+}
+
+window {
+    padding-top: 10px; 
+    color:      rgba(217, 216, 216, 1);
+    background: rgba(30, 30, 46, 1);
+}
+
+window#waybar.solo {
+    color:      rgba(217, 216, 216, 1);
+    background: rgb(35, 31, 32);
+}
+
+#workspaces {
+    border-radius: 4px;
+    background: rgba(30, 30, 46, 1);
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #6272a4;
+}
+
+
+#workspaces button.persistent { 
+    color: #44475a;
+}
+
+#workspaces button.active {
+    color: #8aadf4;
+}
+
+#workspaces button.urgent {
+    color: #f38ba8;
+}
+
+#pulseaudio {
+    color: #89dceb; 
+}
+
+#pulseaudio.muted {
+    color: #f38ba8; 
+}
+
+#clock {
+    color: #f38ba8; 
+    padding-right: 10;  
+}
+
+#window {
+    color: #fab387; 
+}
+
+#custom-weather.display {
+    color: #f5c2e7; 
+}
+
+#custom-spotify.playing {
+    color: #a6e3a1; 
+}

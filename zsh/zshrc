@@ -2,6 +2,7 @@ zsh="$HOME/.config/zsh"
 ZSH="$HOME/.config/zsh"
 wynn="$HOME/polymc/instances/wynn-1.18/.minecraft/"
 GIT="$HOME/Documents/git-repos"
+git="$HOME/Documents/git-repos"
 HADES="/mnt/1tb-hdd/SteamLibrary/steamapps/common/Hades/"
 HISTSIZE=500000
 HISTFILE=$zsh/history
@@ -30,7 +31,7 @@ bindkey "^[[1;5D" backward-word
 bindkey "\e[3~" delete-char
 bindkey "^z" undo
 bindkey -s '^[[1;5A' "sudo "
-bindkey -s '^[[1;5B' "paru"
+bindkey -s '^[[1;5B' "update"
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 

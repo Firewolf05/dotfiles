@@ -5,11 +5,12 @@ var3=' Clear wallpaper history'
 cmd () { 
     echo -en "$var1$icon\n$var2$icon\n$var3$icon\n" | rofi -dmenu -theme ~/.config/rofi-own/pmc.rasi 
 }
+ if pgrep Hyprland; then var=-wl; else var=""; fi
 chosen="$(cmd)"
 echo $chosen 
 case ${chosen} in
     $var1)
-		kitty sh -c "wallpaper-set select" 
+		kitty sh -c "wallpaper-set select ${var}" 
         ;;
     $var2)
 		kitty sh -c "wallpaper-set history" 

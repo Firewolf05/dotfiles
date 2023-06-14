@@ -9,6 +9,14 @@ sel () {
     if [ -f ${hist}1 ]; then /bin/rm ${hist}1; fi
 }
 
+sel_wl () { 
+    ranger --choosefile $temp --selectfile ${dir}$(/bin/ls --group-directories-first | head -1)
+    pkill swaybg && swaybg -m fill -i "$(cat $temp)" || swaybg -m fill -i "$(cat $temp)" &!
+    cp $temp ~/.lastwallpaper-wl
+    cp "$(cat $temp)" ${hist}
+    if [ -f ${hist}1 ]; then /bin/rm ${hist}1; fi
+}
+
 history () { 
     ranger -r $HOME/.config/ranger/sec --choosefile $temp --selectfile ${hist}$(/bin/ls -tr ${hist} | tail -1)
     feh --bg-fill "$(cat $temp)"
@@ -19,7 +27,11 @@ history () {
 }
 
 if [ $1 = "select" ]; then 
-    sel 
+    if [ $2 = "-wl" ]; then 
+        sel_wl
+    else 
+        sel
+    fi
 elif [ $1 = "history" ]; then 
     history
 elif [ $1 = "clr-history" ]; then 

@@ -15,6 +15,9 @@ rm -r $dots/polybar && cp -r $cfg/polybar $dots/ && echo Copied polybar config &
 rm -r $dots/rofi-own && cp -r $cfg/rofi-own $dots/ && echo Copied rofi config && x=$((x+1))
 rm -r $dots/stalonetrayrc && cp $cfg/stalonetrayrc $dots/ && echo Copied stalonetray config && x=$((x+1)) 
 rm -r $dots/starship.toml && cp $cfg/starship.toml $dots/ && echo Copied starship config && x=$((x+1))
+rm -r $dots/hypr && cp -r $cfg/hypr $dots/ && echo Copied Hyprland config && x=$((x+1))
+rm -r $dots/waybar && cp -r $cfg/waybar $dots/ && echo Copied Waybar config && x=$((x+1))
+
 
 # scripts 
 rm -r $dots/scripts && cp -r $HOME/scripts $dots/scripts && rm -r $dots/scripts/wip && echo Copied scripts && x=$((x+1))
@@ -23,7 +26,7 @@ rm -r $dots/scripts && cp -r $HOME/scripts $dots/scripts && rm -r $dots/scripts/
 rm -r $dots/zsh/* && cp -r $cfg/zsh/aliases.zsh $cfg/zsh/functions.zsh $cfg/zsh/theme.zsh $cfg/zsh/zshrc $dots/zsh && echo Copied zsh config && x=$((x+1))
 
 echo
-if [ $x == 12 ]; then
+if [ $x == 14 ]; then
     echo Copied everything successfully 
 else 
     echo Something failed 

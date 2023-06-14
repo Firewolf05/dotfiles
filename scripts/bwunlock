@@ -1,0 +1,5 @@
+#! /bin/bash 
+sessionid=$(bw unlock "$1" | grep "==" | sed -n 3p | sed -e 's/$ bw list items --session //g')
+echo $sessionid 
+echo $sessionid > ~/.bwsession
+bspc wm -r && pkill -USR1 -x sxhkd
