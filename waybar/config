@@ -3,11 +3,106 @@
     "position": "top",
     "height": 30,
 
-    "modules-left": ["wlr/workspaces", "custom/sep", "custom/spotify", "cava"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["tray", "custom/sep", "custom/weather", "custom/sep", "pulseaudio", "custom/sep", "clock"],
+    "modules-left": [
+        "custom/sysmenu", "custom/sep",
+        "wlr/workspaces","custom/sep",
+        "custom/spotify-prev", 
+        "custom/spotify-play-pause",
+        "custom/spotify-next", "custom/spotify-sep",
+        "custom/spotify"
+    ],
+    "modules-center": [
+        "custom/windowbutton-close",
+        "custom/windowbutton-fullscreen",
+        "custom/windowbutton-float", "custom/windowbutton-sep",
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "tray", "custom/sep",
+        "custom/kblayout", "custom/sep",
+        "custom/weather", "custom/sep",
+        "pulseaudio", "custom/sep",
+        "clock"
+    ],
+    "custom/kblayout": {
+        "interval": 1,
+        "exec": "~/.config/waybar/modules/layoutswitch.sh -d",
+        "exec-on-event": true,
+        "on-click": "~/.config/waybar/modules/layoutswitch.sh"
+    },
     "custom/sep": {
-        "exec": "echo ' | '"
+        "exec": "echo ' | '",
+        "tooltip": false
+    },
+    "custom/windowbutton-close": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/windowbutton.sh -cl",
+        "tooltip": true,
+        "on-click": "hyprctl dispatch killactive"
+    },
+    "custom/windowbutton-fullscreen": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/windowbutton.sh -max",
+        "tooltip": true,
+        "on-click": "hyprctl dispatch fullscreen" 
+    },
+    "custom/windowbutton-float": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/windowbutton.sh -fl",
+        "tooltip": true,
+        "on-click": "hyprctl dispatch togglefloating ''" 
+    },
+    "custom/windowbutton-sep": {
+        "interval": 1,
+        "exec": "echo ' | '",
+        "exec-if": " ! [[ $(hyprctl activewindow) = 'Invalid' ]];"
+    },
+    "custom/sysmenu": {
+        "interval": 60,
+        "return-type": "json",
+        "exec":"~/.config/waybar/modules/sysmenu.sh",
+        "toolip": true,
+        "on-click": "~/.config/rofi/powermenu/type-4/powermenu.sh",
+        "on-click-right": "launcher"
+    },
+    "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true,
+        "on-click": "hyprctl dispatch workspace 5"
+    },
+    "custom/spotify-prev": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify-buttons.sh -prev",
+        "exec-if": "pgrep spotify",
+        "on-click": "playerctl --player=spotify previous"
+    },
+    "custom/spotify-play-pause": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify-buttons.sh -p",
+        "exec-if": "pgrep spotify",
+        "exec-on-event": true,
+        "on-click": "playerctl --player=spotify play-pause",
+        "escape": true
+    },
+    "custom/spotify-next": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify-buttons.sh -next",
+        "exec-if": "pgrep spotify",
+        "on-click": "playerctl --player=spotify next"
+    },
+    "custom/spotify-sep": {
+        "interval": 1, 
+        "exec": "echo ' | '",
+        "exec-if": "pgrep spotify"
     },
     "wlr/workspaces": {
         "format-icons": {
@@ -38,41 +133,18 @@
         "sort-by-number": true
 
     },
-
     "hyprland/window": {
         "max-length": 80,
         "tooltip": false
     },
-    "cava": {
-        "framerate": 30,
-        "autosens": 1,
-        "sensitivity": 100,
-        "bars": 14,
-        "lower_cutoff_freq": 50,
-        "higher_cutoff_freq": 10000,
-        "method": "pipewire",
-        "source": "auto",
-        "stereo": true,
-        "reverse": false,
-        "bar_delimiter": 0,
-        "monstercat": false,
-        "waves": true,
-        "noise_reduction": 0.77,
-        "input_delay": 2,
-        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ]
-
-    },
-
     "clock": {
         "format": "{: %I:%M %p}",
         "format-alt": "{: %a, %d %b %Y}",
         "tooltip": false
     },
-
-
     "pulseaudio": {
         "format-alt": "{icon}",
-        "format": "{icon}{volume}",
+        "format": "{icon} {volume}%",
         "format-alt-click": "click-right",
         "format-muted": "",
         "format-icons": {
@@ -80,27 +152,16 @@
             "default": ["", "", ""]
         },
         "on-click": "volume mute",
-        "on-click-right": "pavucontrol",
+        "on-click-middle": "pavucontrol",
         "tooltip": false,
         "on-scroll-up" : "volume up",
         "on-scroll-down" : "volume down"
-    },
-    "custom/spotify": {
-        "interval": 1,
-        "return-type": "json",
-        "exec": "~/.config/waybar/modules/spotify.sh",
-        "exec-if": "pgrep spotify",
-        "escape": true,
-        "on-click": "playerctl --player=spotify play-pause",
-        "on-scroll-up" : "playerctl -p spotify next",
-        "on-scroll-down" : "playerctl -p spotify previous"
     },
     "custom/weather": {
         "interval": 900,
         "return-type": "json",
         "exec": "~/.config/waybar/modules/weather.sh"
     },
-
     "tray": {
         "spacing": 5, 
         "icon-size": 18

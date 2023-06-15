@@ -7,6 +7,7 @@
     box-shadow:    none;
     text-shadow:   none;
     transition-duration: 0s;
+    margin: 0px;
 }
 
 window {
@@ -26,7 +27,7 @@ window#waybar.solo {
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 3px;
     color: #6272a4;
 }
 
@@ -66,4 +67,39 @@ window#waybar.solo {
 
 #custom-spotify.playing {
     color: #a6e3a1; 
+}
+
+#custom-windowbutton-close {
+    color: #f38ba8;
+}
+
+#custom-windowbutton-float {
+    color: #89dceb;
+}
+
+#custom-windowbutton-fullscreen {
+    color: #f9e2af;
+}
+
+#custom-sysmenu {
+    padding-left: 5;
+    color: #fab387;
+}
+
+#custom-spotify-prev {
+    padding-right: 3px;
+    color: #a6e3a1; 
+}
+
+#custom-spotify-play-pause {
+    color: #a6e3a1; 
+}
+
+#custom-spotify-next {
+    padding-left: 3px;
+    color: #a6e3a1; 
+}
+
+#custom-kblayout {
+    color: #f9e2af;
 }
