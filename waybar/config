@@ -6,7 +6,7 @@
     "modules-left": [
         "custom/sysmenu", "custom/sep",
         "wlr/workspaces","custom/sep",
-        "custom/spotify-prev", 
+        "custom/spotify-prev",
         "custom/spotify-play-pause",
         "custom/spotify-next", "custom/spotify-sep",
         "custom/spotify"
@@ -19,15 +19,16 @@
     ],
     "modules-right": [
         "tray", "custom/sep",
-        "custom/kblayout", "custom/sep",
+        "hyprland/language", "custom/sep",
         "custom/weather", "custom/sep",
         "pulseaudio", "custom/sep",
         "clock"
     ],
-    "custom/kblayout": {
-        "interval": 1,
-        "exec": "~/.config/waybar/modules/layoutswitch.sh -d",
-        "exec-on-event": true,
+    "hyprland/language": {
+        "format": " {}", 
+        "format-en": "us",
+        "format-gr": "gr",
+        "keyboard-name": "logitech-g512-rgb-mechanical-gaming-keyboard",
         "on-click": "~/.config/waybar/modules/layoutswitch.sh"
     },
     "custom/sep": {
@@ -74,7 +75,7 @@
         "exec": "~/.config/waybar/modules/spotify.sh",
         "exec-if": "pgrep spotify",
         "escape": true,
-        "on-click": "hyprctl dispatch workspace 5"
+        "on-click": "~/.config/waybar/modules/player-swap.sh"
     },
     "custom/spotify-prev": {
         "interval": 1,
@@ -88,9 +89,8 @@
         "return-type": "json",
         "exec": "~/.config/waybar/modules/spotify-buttons.sh -p",
         "exec-if": "pgrep spotify",
-        "exec-on-event": true,
         "on-click": "playerctl --player=spotify play-pause",
-        "escape": true
+        "signal": 2
     },
     "custom/spotify-next": {
         "interval": 1,
@@ -126,7 +126,7 @@
             "7": [],
             "8": []
         },
-        "active-only": "true",
+        "active-only": "false",
         "on-click": "activate",
         "format": "{icon}",
         "disable-scroll": false,
@@ -158,7 +158,7 @@
         "on-scroll-down" : "volume down"
     },
     "custom/weather": {
-        "interval": 900,
+        "interval": 1,
         "return-type": "json",
         "exec": "~/.config/waybar/modules/weather.sh"
     },

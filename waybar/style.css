@@ -16,10 +16,7 @@ window {
     background: rgba(30, 30, 46, 1);
 }
 
-window#waybar.solo {
-    color:      rgba(217, 216, 216, 1);
-    background: rgb(35, 31, 32);
-}
+
 
 #workspaces {
     border-radius: 4px;
@@ -100,6 +97,6 @@ window#waybar.solo {
     color: #a6e3a1; 
 }
 
-#custom-kblayout {
+#language {
     color: #f9e2af;
 }

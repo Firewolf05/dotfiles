@@ -1,11 +1,1 @@
-if [[ "$1" = "-d" ]]; then 
-    echo " $(cat ~/.kblayout)"
-else
-    if [ $(cat ~/.kblayout) == us ]; then 
-        hyprctl switchxkblayout logitech-g512-rgb-mechanical-gaming-keyboard 1 >/dev/null
-        echo gr > ~/.kblayout
-    else 
-        hyprctl switchxkblayout logitech-g512-rgb-mechanical-gaming-keyboard 0 >/dev/null
-        echo us > ~/.kblayout
-    fi 
-fi
+if [[ $(hyprctl devices | /usr/bin/grep "active" | head -8 | tail -1 | sed -e 's/active keymap: //g' | sed -e 's/ //g') = "			English(US)" ]]; then hyprctl switchxkblayout logitech-g512-rgb-mechanical-gaming-keyboard 1; else hyprctl switchxkblayout logitech-g512-rgb-mechanical-gaming-keyboard 0; fi 
